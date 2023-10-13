@@ -11,12 +11,13 @@
   font-weight: 400 !important;
 }
 
-.nav-link:focus {
+.nav-link:focus, a:focus {
   color: #f3839b !important;
 }
 
-.nav-link {
+.nav-link, a {
   color: black !important;
+  text-decoration: none !important;
 }
 
 .nav-search-form {
@@ -28,6 +29,7 @@
   border-top-left-radius: 25px !important;
   border-bottom-left-radius: 25px !important;
   background: #fafafa;
+  color: #BBBBBB !important;
 }
 
 .nav-search-bottom svg {
@@ -68,9 +70,9 @@
   left: 15%;
 }
 
-.home-hero-text button {
+button {
   border: 0;
-  border-radius: 25px;
+  border-radius: 25px !important;
   padding: 5px 15px;
   color: white;
   background-color: #f3839b;
@@ -81,8 +83,6 @@
   margin: 50px;
 }
 
-.home-service-rows {
-}
 
 .home-service-section div {
   font-size: 14px;
@@ -92,6 +92,126 @@
   color: #6a6a6a;
   font-size: 12px;
 }
+
+.home-product-section {
+  color: #404040 !important;
+}
+
+
+.home-product-categories {
+  margin: 40px auto;
+}
+
+.product-image {
+  display: block;
+  margin: 0 auto !important;
+}
+
+@media (max-width: 800px) {
+  .product-image {
+    width: 190px;
+  }
+}
+
+.color-circle {
+  color: darkblue;
+  border: 2px solid #d9d9d9;
+  border-radius: 50%;
+  height: 23px;
+  width: 23px;
+  margin: 2px;
+  padding: 1px;
+}
+
+.home-product-type-section {
+  margin: 50px 0;
+}
+
+.home-product-type-row {
+  margin: 0 !important;
+  padding: 0 auto !important;
+  justify-content: center;
+}
+
+.product-type-col,
+.available-product-col,
+.featured-type-col {
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.product-type-col p {
+  position: absolute;
+  bottom: 1%;
+  left: 5%;
+}
+
+.home-featured-type-row {
+  justify-content: center;
+  margin: 0 !important;
+  color: #404040;
+}
+
+.featured-type-text {
+  text-align: right;
+}
+
+.featured-type-text a {
+  text-decoration: none;
+  color: black;
+  border-bottom: 1px solid black;
+}
+
+.home-testi-section {
+  background-image: url(./images/home/testimonial.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 320px;
+}
+
+.home-testi-text {
+  color: #818181;
+}
+
+.home-testi-text p {
+  margin: 0 !important;
+  font-size: 13px;
+}
+
+.home-available-product-section {
+  margin: 50px auto;
+}
+
+.home-available-product-row {
+  justify-content: center;
+}
+
+
+@media (max-width: 768px) {
+  div .available-product-col {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Contact Section */
+
+.form-control-sm {
+  border: 0 !important;
+  background-color: #F7F7F7 !important;
+}
+
+
+.contact-form-section {
+  margin: 0 auto;
+}
+.contact-info-section {
+  font-size: 14px; color: #595959; 
+}
+
 
 /* Footer Section */
 

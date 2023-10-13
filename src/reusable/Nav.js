@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { FiChevronDown } from "react-icons/fi";
@@ -26,34 +26,34 @@ function NavBar() {
           <Nav className="mx-auto">
             <Nav.Item>
               <Nav.Link href="#">
-                {/* <Link className="nav-links" to="/home"> */}
+                <Link className="nav-links" to="/home">
                 Home
                 <FiChevronDown />
-                {/* </Link> */}
+                </Link>
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="#">
-                {/* <Link className="nav-links" to="/shop"> */}
+                <Link className="nav-links" to="/shop">
                 Shop
                 <FiChevronDown />
-                {/* </Link> */}
+                </Link>
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="#">
-                {/* <Link className="nav-links" to="/about"> */}
+                <Link className="nav-links" to="/about">
                 About Us
                 <FiChevronDown />
-                {/* </Link> */}
+                </Link>
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="#">
-                {/* <Link className="nav-links" to="/contact"> */}
+                <Link className="nav-links" to="/contact">
                 Contact Us
                 <FiChevronDown />
-                {/* </Link> */}
+                </Link>
               </Nav.Link>
             </Nav.Item>
           </Nav>
