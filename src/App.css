@@ -251,7 +251,46 @@ a.page-link:hover {
   max-width: 800px;
   margin: 50px auto;
   padding: 20px;
-  border: 1px solid #EFEFEF;
+  border: 1px solid #efefef;
+}
+
+.form-check-input {
+  border: 2px solid #f3839b !important;
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem #f7ced7 !important;
+  outline: 0 !important;
+}
+.form-check-input:checked {
+  background-color: #f7ced7 !important;
+}
+
+.accordion-button {
+  color: black !important;
+  background-color: white !important;
+  box-shadow: none !important;
+  border-radius: 0% !important;
+  border-bottom: 2px solid #EFEFEF !important;
+}
+
+.accordion {
+  --bs-accordion-btn-icon-width: 0.8em !important;
+  --bs-accordion-border-width: 0 !important;
+}
+
+button.selected-value {
+  color: #555555 !important;
+  background-color: white !important;
+  border-radius: 25px;
+  border: 2px dashed #EFEFEF !important; 
+}
+
+.accordion-body .form-control {
+  background-color: white !important;
+  color: #555555 !important;
+  border: 1px solid #B6B6B6 !important;
+  display: inline;
 }
 
 /* About Section */

@@ -30,9 +30,9 @@ export default function Paginator() {
 
   return (
     <div className="shop-paginator-section">
-      <Row className="mx-0 my-5">
+      <Row className="mx-0">
         {state.data.map((p, id) => (
-          <Col md={3} sm={6} className="p-0" key={id}>
+          <Col md={4} sm={6} className="p-0" key={id}>
             <img
               width={200}
               className="product-image"
