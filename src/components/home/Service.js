@@ -11,7 +11,7 @@ export default function Service() {
       <Container className="home-service-container" style={{ maxWidth: 850 }}>
         <Row className="home-service-rows">
           {services.map((s, id) => (
-            <Col md={3} sm={6}>
+            <Col md={3} key={id} sm={6}>
             <Row>
               <Col xs={2}>
                 <s.svg
@@ -25,7 +25,6 @@ export default function Service() {
             </Row>
           </Col>
           ))}
-          
         </Row>
       </Container>
     </div>

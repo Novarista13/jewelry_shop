@@ -6,11 +6,13 @@ import { Routes, Route } from "react-router-dom";
 import Contact from "./components/contact/Contact";
 import About from "./components/about/About";
 import Shop from "./components/shop/Shop";
+import Current from "./reusable/Current";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
+      <Current />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />

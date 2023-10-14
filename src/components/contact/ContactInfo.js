@@ -17,9 +17,9 @@ export default function ContactInfo() {
       <p>Email : Info@loremipsum.com</p>
       <p>Phone : +88012345678</p>
       <p>
-        <div style={{ color: "black", fontWeight: 600, fontSize: 16 }}>
+        <span style={{ display: "block", color: "black", fontWeight: 600, fontSize: 16 }}>
           Working Hours
-        </div>
+        </span>
         Monday - Saturday :08AM-22PM
       </p>
     </div>

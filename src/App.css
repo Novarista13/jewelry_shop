@@ -11,11 +11,19 @@
   font-weight: 400 !important;
 }
 
-.nav-link:focus, a:focus {
+.navbar-toggler {
   color: #f3839b !important;
 }
 
-.nav-link, a {
+.navbar-toggler-icon {
+  background-image: url(images/navbar-toggler.svg) !important;
+}
+
+.nav-link a:focus {
+  color: #f3839b !important;
+}
+
+.nav-link a {
   color: black !important;
   text-decoration: none !important;
 }
@@ -26,10 +34,9 @@
 
 .nav-search-bottom {
   border: 0;
-  border-top-left-radius: 25px !important;
-  border-bottom-left-radius: 25px !important;
+  border-radius: 25px 0 0 25px !important;
   background: #fafafa;
-  color: #BBBBBB !important;
+  color: #bbbbbb !important;
 }
 
 .nav-search-bottom svg {
@@ -49,6 +56,17 @@
   border: 1 !important;
   border-color: #e8a9b6 !important;
   box-shadow: 0 0 0 0.25rem #ed9dae !important;
+}
+
+.current-path-section {
+  padding: 18px;
+  text-align: left;
+  background: #f5f5f5;
+}
+
+.current-path-container {
+  display: flex;
+  justify-content: flex-start;
 }
 
 /* Home Section */
@@ -83,7 +101,6 @@ button {
   margin: 50px;
 }
 
-
 .home-service-section div {
   font-size: 14px;
 }
@@ -96,7 +113,6 @@ button {
 .home-product-section {
   color: #404040 !important;
 }
-
 
 .home-product-categories {
   margin: 40px auto;
@@ -189,7 +205,6 @@ button {
   justify-content: center;
 }
 
-
 @media (max-width: 768px) {
   div .available-product-col {
     width: 300px;
@@ -197,21 +212,81 @@ button {
   }
 }
 
+/* Shop Section */
+
+.pagination {
+  --bs-pagination-active-bg: #f3839b !important;
+  --bs-pagination-active-border-color: #f3839b !important;
+  --bs-pagination-hover-border-color: #f3839b !important;
+  --bs-pagination-focus-box-shadow: 0 0 0 0.25rem #f3839b !important;
+  --bs-pagination-focus-bg: #f3839b !important;
+  --bs-pagination-focus-color: white !important;
+}
+
+.page-link {
+  border-radius: 50% !important;
+  margin: 0 5px !important;
+  font-size: 14px !important;
+}
+
+a.page-link.active,
+.active > a.page-link {
+  color: white !important;
+}
+
+a.page-link {
+  color: black;
+}
+
+a.page-link:hover {
+  color: #f3839b;
+}
+
+.pagination-links {
+  max-width: fit-content;
+  margin: 0 auto;
+}
+
+.pagination-links-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #EFEFEF;
+}
+
+/* About Section */
+
+.about-hero-section {
+  margin: 50px auto;
+}
+
+.about-hero-section p {
+  font-size: 14px;
+  color: #727272;
+  line-height: 176.5%;
+  letter-spacing: -0.075px;
+}
+
+.about-advantage-section {
+  font-size: 13px;
+  color: #727272;
+  margin: 100px auto;
+}
+
 /* Contact Section */
 
 .form-control-sm {
   border: 0 !important;
-  background-color: #F7F7F7 !important;
+  background-color: #f7f7f7 !important;
 }
-
 
 .contact-form-section {
   margin: 0 auto;
 }
 .contact-info-section {
-  font-size: 14px; color: #595959; 
+  font-size: 14px;
+  color: #595959;
 }
-
 
 /* Footer Section */
 
