@@ -12,7 +12,7 @@ export default function FilterRow({ title, data }) {
           <button className="selected-value mb-3">0 selected</button>
           <Row>
             {data.map((item, id) => (
-              <Col sm={12} xs={6}>
+              <Col sm={12} key={id} xs={6}>
                 <Form.Check
                   inline
                   label={item}

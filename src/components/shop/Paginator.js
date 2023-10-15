@@ -8,23 +8,39 @@ import { FaCircle } from "react-icons/fa6";
 export default function Paginator() {
   const [state, setState] = useState({
     data: [],
-    page: [1, 2, 3],
-    limit: 10,
+    limit: 15,
+    offset: 0,
+    page: 3,
     activePage: 1,
   });
 
   useEffect(() => {
+    let pageNum = pageData().length / state.limit;
+    if (pageNum % 1 !== 0) {
+      pageNum++;
+    }
     setState((prev) => ({
       ...prev,
-      data: pageData(1),
+      page: Math.floor(pageNum),
+      data: pageData().slice(state.offset, state.limit),
     }));
-  }, [state.limit]);
+  }, [state.offset, state.limit]);
+
+  let pageCount = [1, 2, 3];
+  pageCount = Array(state.page).fill(1);
 
   const handlePageChange = (pageNumber) => {
-    setState((prev) => ({ ...prev, activePage: pageNumber }));
+    let offset = state.offset + state.limit * (pageNumber - 1);
+    let limit = state.limit + state.limit * (pageNumber - 1);
+
     setState((prev) => ({
       ...prev,
-      data: pageData(pageNumber),
+      activePage: pageNumber,
+    }));
+
+    setState((prev) => ({
+      ...prev,
+      data: pageData().slice(offset, limit),
     }));
   };
 
@@ -62,7 +78,7 @@ export default function Paginator() {
             className={state.activePage === 1 ? "disabled" : ""}
             onClick={() => handlePageChange(state.activePage - 1)}
           />
-          {state.page.map((_, index) => {
+          {pageCount.map((_, index) => {
             return (
               <Pagination.Item
                 onClick={() => {
@@ -76,7 +92,7 @@ export default function Paginator() {
             );
           })}
           <Pagination.Next
-            className={state.activePage === 3 ? "disabled" : ""}
+            className={state.activePage === pageCount.length ? "disabled" : ""}
             onClick={() => handlePageChange(state.activePage + 1)}
           />
         </Pagination>
