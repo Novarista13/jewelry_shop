@@ -2,8 +2,12 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Accordion from "react-bootstrap/Accordion";
+import { useContext } from "react";
+import { ProductContext } from "../../contexts/ProductContext";
 
 export default function FilterRow({ title, data }) {
+  const { checkValue, setCheckValue } = useContext(ProductContext);
+
   return (
     <Accordion defaultActiveKey="0">
       <Accordion.Item eventKey="0">
@@ -18,7 +22,22 @@ export default function FilterRow({ title, data }) {
                   label={item}
                   name={item}
                   className="raw-mateirals"
+                  checked={checkValue.some((v) => v.item === item)}
                   type={"checkbox"}
+                  onChange={(e) => {
+                    e.target.checked
+                      ? setCheckValue([
+                          ...checkValue,
+                          { item: item, type: title },
+                        ])
+                      : setCheckValue(
+                          checkValue.filter((i) => i.item !== item)
+                        );
+                    localStorage.setItem(
+                      "checkValue",
+                      JSON.stringify(checkValue)
+                    );
+                  }}
                   id={item}
                 />
               </Col>

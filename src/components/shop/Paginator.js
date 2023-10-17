@@ -1,30 +1,33 @@
 import { useEffect, useState } from "react";
 import Pagination from "react-bootstrap/Pagination";
-import { pageData } from "../../data/pageData";
+import { useContext } from "react";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { FaCircle } from "react-icons/fa6";
+import ProductSingle from "./ProductSingle";
+import { ProductContext } from "../../contexts/ProductContext";
 
 export default function Paginator() {
+  const { checkResultProduct } = useContext(ProductContext);
   const [state, setState] = useState({
     data: [],
-    limit: 15,
+    limit: 7,
     offset: 0,
     page: 3,
     activePage: 1,
   });
 
+  let paginationData = checkResultProduct;
+
   useEffect(() => {
-    let pageNum = pageData().length / state.limit;
+    let pageNum = paginationData.length / state.limit;
     if (pageNum % 1 !== 0) {
       pageNum++;
     }
     setState((prev) => ({
       ...prev,
       page: Math.floor(pageNum),
-      data: pageData().slice(state.offset, state.limit),
+      data: paginationData.slice(state.offset, state.limit),
     }));
-  }, [state.offset, state.limit]);
+  }, [state.offset, state.limit, paginationData]);
 
   let pageCount = [1, 2, 3];
   pageCount = Array(state.page).fill(1);
@@ -40,37 +43,14 @@ export default function Paginator() {
 
     setState((prev) => ({
       ...prev,
-      data: pageData().slice(offset, limit),
+      data: paginationData.slice(offset, limit),
     }));
   };
 
   return (
     <div className="shop-paginator-section">
       <Row className="mx-0">
-        {state.data.map((p, id) => (
-          <Col md={4} sm={6} className="p-0" key={id}>
-            <img
-              width={200}
-              className="product-image"
-              src={p.image}
-              alt="footer-logo"
-            />
-            <div className="my-2">{p.category}</div>
-            {p.color.map((c, id) => (
-              <FaCircle
-                key={id}
-                className="color-circle"
-                style={{ color: c }}
-              />
-            ))}
-            <p>
-              {p.name}{" "}
-              <span style={{ display: "block", color: "#f3839b" }}>
-                ${p.price}
-              </span>
-            </p>
-          </Col>
-        ))}
+        <ProductSingle data={state.data} />
       </Row>
       <div className="pagination-links-container">
         <Pagination className="px-4 pagination-links">

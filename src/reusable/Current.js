@@ -4,10 +4,6 @@ import Container from "react-bootstrap/Container";
 
 export default function Current() {
   const location = useLocation();
-  // console.log(location.pathname);
-  // location.pathname !== "/home" && location.pathname !== "/"
-  //   ? console.log("it's work")
-  //   : console.log("It does not work!");
 
   return location.pathname !== "/home" && location.pathname !== "/" ? (
     <div className="current-path-section mx-auto">
