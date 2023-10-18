@@ -51,7 +51,6 @@ export default function RecipesContextProvider({ children }) {
     if (priceCheck.length > 0) data = priceCheck;
     if (typeCheck.length > 0) data = typeCheck;
     if (otherCheck.length > 0) data = otherCheck;
-    console.log(data);
 
     stockCheck = checkResult(
       otherTypes.map((t) =>
@@ -64,10 +63,13 @@ export default function RecipesContextProvider({ children }) {
             })
       )
     );
-    console.log(stockCheck);
   }
 
-  if (checkValue.some((v) => v.type !== "Product type")) {
+  if (
+    checkValue.some(
+      (v) => v.type !== "Product type" || v.type !== "Availablity"
+    )
+  ) {
     let otherTypes = checkValue.filter(
       (v) => v.type !== "Product type" || v.type !== "Availablity"
     );

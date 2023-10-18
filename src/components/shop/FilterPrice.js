@@ -17,7 +17,20 @@ export default function FilterPrice() {
       <Accordion.Item eventKey="0">
         <Accordion.Header>Price</Accordion.Header>
         <Accordion.Body style={{ color: "#555555", fontSize: 14 }}>
-          <button className="selected-value mb-3">0 selected</button>
+          <button
+            className="selected-value mb-3"
+            onClick={() => {
+              startPriceRef.current.value = 0;
+              endPriceRef.current.value = 200;
+              setPrice({
+                startPrice: 0,
+                endPrice: 200,
+              });
+              localStorage.setItem("price", JSON.stringify(price));
+            }}
+          >
+            Reset
+          </button>
           <div>
             <Form className="form-inline mb-3">
               <Row>
