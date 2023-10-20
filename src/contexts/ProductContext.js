@@ -15,7 +15,7 @@ export default function RecipesContextProvider({ children }) {
   );
   const [checkValue, setCheckValue] = useState(checked ? checked : []);
 
-  let checkResultProduct;
+  let checkResultProduct = products;
   let typeCheck = [];
   let otherCheck = [];
   let stockCheck = [];
@@ -27,22 +27,7 @@ export default function RecipesContextProvider({ children }) {
     priceCheck = data.filter((item) => {
       return item.price >= price.startPrice && item.price <= price.endPrice;
     });
-  }
-
-  if (checkValue.some((v) => v.type === "Product type")) {
-    let types = checkValue.filter((v) => v.type === "Product type");
-    let data = products;
-    if (priceCheck.length > 0) data = priceCheck;
-    if (stockCheck.length > 0) data = stockCheck;
-    if (otherCheck.length > 0) data = otherCheck;
-
-    typeCheck = checkResult(
-      types.map((t) =>
-        data.filter((item) => {
-          return item.category.includes(t.item);
-        })
-      )
-    );
+    checkResultProduct = priceCheck;
   }
 
   if (checkValue.some((v) => v.type === "Availablity")) {
@@ -63,15 +48,29 @@ export default function RecipesContextProvider({ children }) {
             })
       )
     );
+    checkResultProduct = stockCheck;
   }
 
-  if (
-    checkValue.some(
-      (v) => v.type !== "Product type" || v.type !== "Availablity"
-    )
-  ) {
+  if (checkValue.some((v) => v.type === "Product type")) {
+    let types = checkValue.filter((v) => v.type === "Product type");
+    let data = products;
+    if (priceCheck.length > 0) data = priceCheck;
+    if (stockCheck.length > 0) data = stockCheck;
+    if (otherCheck.length > 0) data = otherCheck;
+
+    typeCheck = checkResult(
+      types.map((t) =>
+        data.filter((item) => {
+          return item.category.includes(t.item);
+        })
+      )
+    );
+    checkResultProduct = typeCheck ? typeCheck : [];
+  }
+
+  if (checkValue.some((v) => v.type === "Color" || v.type === "Size")) {
     let otherTypes = checkValue.filter(
-      (v) => v.type !== "Product type" || v.type !== "Availablity"
+      (v) => v.type === "Color" || v.type === "Size"
     );
     let data = products;
     if (priceCheck.length > 0) data = priceCheck;
@@ -85,6 +84,7 @@ export default function RecipesContextProvider({ children }) {
         })
       )
     );
+    checkResultProduct = otherCheck ? otherCheck : [];
   }
 
   function checkResult(data) {
@@ -98,18 +98,6 @@ export default function RecipesContextProvider({ children }) {
     let uniqueProduct = Array.from(uniqueSet).map(JSON.parse);
 
     return [...new Set(uniqueProduct)];
-  }
-
-  if (otherCheck.length > 0) {
-    checkResultProduct = otherCheck;
-  } else if (stockCheck.length > 0) {
-    checkResultProduct = stockCheck;
-  } else if (typeCheck.length > 0) {
-    checkResultProduct = typeCheck;
-  } else if (priceCheck.length > 0) {
-    checkResultProduct = priceCheck;
-  } else {
-    checkResultProduct = products;
   }
 
   return (

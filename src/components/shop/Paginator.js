@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Pagination from "react-bootstrap/Pagination";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import Row from "react-bootstrap/Row";
 import ProductSingle from "./ProductSingle";
 import { ProductContext } from "../../contexts/ProductContext";
@@ -15,8 +15,13 @@ export default function Paginator() {
     activePage: 1,
   });
 
-  let paginationData = checkResultProduct;
+  // let paginationData = checkResultProduct.length > 0 ? checkResultProduct : [];
 
+  const paginationData = useMemo(
+    () => (checkResultProduct.length > 0 ? checkResultProduct : []),
+    [checkResultProduct]
+  );
+  
   useEffect(() => {
     let pageNum = paginationData.length / state.limit;
     if (pageNum % 1 !== 0) {
