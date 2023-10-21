@@ -9,7 +9,7 @@ export default function Paginator() {
   const { checkResultProduct } = useContext(ProductContext);
   const [state, setState] = useState({
     data: [],
-    limit: 7,
+    limit: 8,
     offset: 0,
     page: 3,
     activePage: 1,
@@ -21,7 +21,7 @@ export default function Paginator() {
     () => (checkResultProduct.length > 0 ? checkResultProduct : []),
     [checkResultProduct]
   );
-  
+
   useEffect(() => {
     let pageNum = paginationData.length / state.limit;
     if (pageNum % 1 !== 0) {

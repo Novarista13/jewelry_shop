@@ -133,8 +133,8 @@ button {
   color: darkblue;
   border: 2px solid #d9d9d9;
   border-radius: 50%;
-  height: 23px;
-  width: 23px;
+  height: 21px;
+  width: 21px;
   margin: 2px;
   padding: 1px;
 }
@@ -271,7 +271,7 @@ a.page-link:hover {
   background-color: white !important;
   box-shadow: none !important;
   border-radius: 0% !important;
-  border-bottom: 2px solid #EFEFEF !important;
+  border-bottom: 2px solid #efefef !important;
 }
 
 .accordion {
@@ -283,16 +283,31 @@ button.selected-value {
   color: #555555 !important;
   background-color: white !important;
   border-radius: 25px;
-  border: 2px dashed #EFEFEF !important; 
+  border: 2px dashed #efefef !important;
 }
 
 .accordion-body .form-control {
   background-color: white !important;
   color: #555555 !important;
-  border: 1px solid #B6B6B6 !important;
+  border: 1px solid #b6b6b6 !important;
   display: inline;
 }
 
+.sold {
+  color: gainsboro !important;
+}
+
+.sold-img {
+  height: 200px;
+  width: 200px;
+  position: relative;
+  background-size: cover;
+}
+.sold-svg-image {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+}
 /* About Section */
 
 .about-hero-section {

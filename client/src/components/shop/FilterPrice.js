@@ -20,11 +20,11 @@ export default function FilterPrice() {
           <button
             className="selected-value mb-3"
             onClick={() => {
-              startPriceRef.current.value = 0;
-              endPriceRef.current.value = 200;
+              startPriceRef.current.value = 200;
+              endPriceRef.current.value = 1200;
               setPrice({
-                startPrice: 0,
-                endPrice: 200,
+                startPrice: 200,
+                endPrice: 1200,
               });
               localStorage.setItem("price", JSON.stringify(price));
             }}
@@ -35,11 +35,11 @@ export default function FilterPrice() {
             <Form className="form-inline mb-3">
               <Row>
                 <Col>
-                  <Form.Label>From $ 0</Form.Label>
+                  <Form.Label>From $</Form.Label>
                   <Form.Control
                     size="sm"
-                    min={5}
-                    max={100}
+                    min={200}
+                    max={600}
                     maxLength={3}
                     defaultValue={price.startPrice}
                     type="number"
@@ -47,12 +47,12 @@ export default function FilterPrice() {
                   />
                 </Col>
                 <Col>
-                  <Form.Label>To $ 200</Form.Label>
+                  <Form.Label>To $</Form.Label>
                   <Form.Control
                     size="sm"
-                    min={101}
+                    min={601}
                     maxLength={3}
-                    max={200}
+                    max={1200}
                     defaultValue={price.endPrice}
                     type="number"
                     ref={endPriceRef}
