@@ -308,6 +308,29 @@ button.selected-value {
   top: 25%;
   left: 25%;
 }
+
+.modal-dialog {
+  max-width: 750px !important;
+}
+
+.modal-col {
+  display: grid;
+  justify-content: center;
+}
+
+.modal-content {
+  margin: 20px;
+}
+
+@media (max-width: 414px) {
+  .modal-content {
+    margin: 0;
+  }
+  .modal-image {
+    width: 100%;
+  }
+}
+
 /* About Section */
 
 .about-hero-section {

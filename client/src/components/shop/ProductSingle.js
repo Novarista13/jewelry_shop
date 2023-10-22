@@ -2,6 +2,7 @@ import Col from "react-bootstrap/Col";
 import { FaCircle } from "react-icons/fa6";
 import product from "../../images/home/product.png";
 import sold from "../../images/sold.svg";
+import ProductModal from "./ProductModal";
 
 export default function ProductSingle({ data }) {
   const capitalizeWords = (str) => {
@@ -18,13 +19,20 @@ export default function ProductSingle({ data }) {
         className={!p.is_instock ? "sold-img product-image" : null}
         style={{ backgroundImage: !p.is_instock ? `url(${product})` : null }}
       >
-        <img
-          width={200}
-          className="product-image"
-          style={{ display: !p.is_instock ? "none" : "block" }}
-          src={product}
-          alt="footer-logo"
-        />
+        {p.is_instock ? (
+          <ProductModal productData={p}>
+            <img
+              width={200}
+              className="product-image"
+              style={{
+                display: !p.is_instock ? "none" : "block",
+                cursor: "pointer",
+              }}
+              src={product}
+              alt="footer-logo"
+            />
+          </ProductModal>
+        ) : null}
 
         <img
           width={100}
