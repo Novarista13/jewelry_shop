@@ -10,13 +10,12 @@ export default function ProductModal({ productData, children }) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   return (
     <>
       <div>
-        <a href className="work-modal-button" onClick={handleShow}>
+        <button className="work-modal-button" onClick={handleShow}>
           {children}
-        </a>
+        </button>
       </div>
 
       <Modal
@@ -37,19 +36,16 @@ export default function ProductModal({ productData, children }) {
               />
             </Col>
             <Col className="modal-col">
-              <h3
+              <h4
                 style={{ fontWeight: 700 }}
                 className="p-3 mt-4 pt-0 text-sm-left text-xs-center"
               >
                 {productData.name}
-              </h3>
-              <ul
-                className="mx-3"
-                style={{ listStyle: "none", fontSize: 16 }}
-              >
+              </h4>
+              <ul className="mx-3" style={{ listStyle: "none", fontSize: 16 }}>
                 <li>type : {productData.type}</li>
                 <li>brand : {productData.brand}</li>
-                <li>price : ${productData.price}</li>
+                <li>price : $ {productData.price}</li>
                 <li>
                   color :{" "}
                   <FaCircle

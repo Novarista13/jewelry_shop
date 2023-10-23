@@ -254,11 +254,11 @@ a.page-link:hover {
   border: 1px solid #efefef;
 }
 
-.form-check-input {
+.form-check-input, .form-select:focus {
   border: 2px solid #f3839b !important;
 }
 
-.form-check-input:focus {
+.form-check-input:focus, .form-select:focus {
   box-shadow: 0 0 0 0.25rem #f7ced7 !important;
   outline: 0 !important;
 }
@@ -303,6 +303,7 @@ button.selected-value {
   position: relative;
   background-size: cover;
 }
+
 .sold-svg-image {
   position: absolute;
   top: 25%;
@@ -331,6 +332,30 @@ button.selected-value {
   }
 }
 
+.btn-close:focus {
+  box-shadow: 0 0 0 0.25rem #e8a9b6 !important;
+}
+
+.btn-close {
+  --bs-btn-close-bg: url(./images/close-btn.svg) !important;
+}
+
+.work-modal-button img:hover {
+  border-radius: 10px;
+  box-shadow: 0 0 0 0.25rem #f3839b !important;
+}
+
+.work-modal-button {
+  border: 0 !important;
+  color: white !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
+.add-image {
+  border: 4px dashed #f3839b;
+  padding: 30px;
+}
 /* About Section */
 
 .about-hero-section {
