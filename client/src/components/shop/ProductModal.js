@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { FaCircle } from "react-icons/fa6";
 import product from "../../images/home/product.png";
+import EditProductModal from "./EditProduct";
 
 export default function ProductModal({ productData, children }) {
   const [show, setShow] = useState(false);
@@ -70,6 +71,7 @@ export default function ProductModal({ productData, children }) {
                 <li>size : {productData.size}</li>
                 <li>metal : {productData.metal}</li>
               </ul>
+              <EditProductModal initialData={productData} />
             </Col>
           </Row>
         </Modal.Body>

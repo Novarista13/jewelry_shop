@@ -1,4 +1,5 @@
 import { useState, createContext, useEffect } from "react";
+import { useApiFetch } from "./ApiConnect";
 
 export const ProductContext = createContext();
 let checks = localStorage.getItem("checkValue");
@@ -15,16 +16,7 @@ export default function RecipesContextProvider({ children }) {
   const [checkValue, setCheckValue] = useState(checked ? checked : []);
 
   const url = "http://localhost:3001/api/jewelleries";
-
-  const fetchInfo = async () => {
-    const res = await fetch(url);
-    const data = await res.json();
-    return setProducts(data);
-  };
-
-  useEffect(() => {
-    fetchInfo();
-  }, []);
+  useApiFetch(url, setProducts);
 
   let checkResultProduct = products;
 
@@ -105,7 +97,7 @@ export default function RecipesContextProvider({ children }) {
     let filteredValue = filterAllChecks("brand", "Brand");
     checkResultProduct = filteredValue ? filteredValue : [];
   }
-  
+
   if (checkValue.some((v) => v.type === "Material")) {
     let filteredValue = filterAllChecks("metal", "Material");
     checkResultProduct = filteredValue ? filteredValue : [];

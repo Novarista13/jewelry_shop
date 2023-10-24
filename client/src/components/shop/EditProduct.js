@@ -1,32 +1,32 @@
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { apiCreate, useApiFetch } from "../../contexts/ApiConnect";
+import { useApiFetch } from "../../contexts/ApiConnect";
 import ProductForm from "./ProductForm";
 
-export default function AddProductModal({ children }) {
+export default function EditProductModal({ initialData }) {
   const [show, setShow] = useState(false);
   const [data, setData] = useState({});
   const [category, setCategory] = useState([]);
-  const [apiStatus, setApiStatus] = useState();
+  // const [apiStatus, setApiStatus] = useState();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const url = "http://localhost:3001/api/categories";
   useApiFetch(url, setCategory);
+  let singleCategory = category.filter(
+    (c) => c._id === initialData.category_id
+  );
 
-  const api = "http://localhost:3001/api/jewelleries";
   const handleSubmit = (e) => {
     setShow(false);
-    apiCreate(e, api, data, setApiStatus);
+    // apiCreate(e, api, data, setApiStatus);
   };
 
   return (
     <>
-      <div>
-        <button className="work-modal-button" onClick={handleShow}>
-          {children}
-        </button>
+      <div className="mx-auto">
+        <button onClick={handleShow}>Edit</button>
       </div>
 
       <Modal
@@ -38,12 +38,15 @@ export default function AddProductModal({ children }) {
         <Modal.Header closeButton className="border-0"></Modal.Header>
         <Modal.Body>
           <h5 style={{ fontWeight: 600 }} className="mb-3 text-center">
-            Add New Product
+            Edit Product Info
           </h5>
           <ProductForm
             category={category}
+            category_name={
+              singleCategory.length > 0 ? singleCategory[0].name : null
+            }
             handleSubmit={handleSubmit}
-            data={data}
+            data={initialData}
             setData={setData}
           />
         </Modal.Body>
