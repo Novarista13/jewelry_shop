@@ -6,6 +6,10 @@ const JewellerySchema= new mongoose.Schema({
         type:String,
         required:[true,"Name field is required"]
     },
+    image: {
+        type: String,
+        default: "",
+      },
     price:{
         type:String,
         required:[true,"Price field is required"]
