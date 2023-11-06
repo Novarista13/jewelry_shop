@@ -9,7 +9,12 @@ const getJews = asyncHandler(async(req,res)=>{
 
 const postJew = asyncHandler(async(req,res)=>{
     
+
         const {name,image,price,color,category_name,type,brand,size,metal,featured,is_instock} = req.body;
+
+        const {name,price,color,category_name,type,brand,size,metal,featured,is_instock} = req.body;
+        console.log(req.body);
+
         if(!name,!color,!price,!category_name,!type,!brand,!size,!metal){
             res.status(400).json({msg:"All fields are mandatory to create a jewellery!"});
         }

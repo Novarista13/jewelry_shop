@@ -11,9 +11,12 @@ export default function Advantage() {
         style={{ maxWidth: 800 }}
       >
         <div className="my-5">
-        <h5 style={{ color: "black", fontWeight: 600 }}>Why Choose Us</h5>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-
+          <h5 style={{ color: "black", fontWeight: 600 }}>Why Choose Us</h5>
+          <p>
+            we combine the allure of finely crafted jewelry with a commitment to
+            exceptional service, ensuring your every moment is adorned with
+            elegance.
+          </p>
         </div>
         <Row className="home-advantage-rows">
           {advantages.map((a, id) => (

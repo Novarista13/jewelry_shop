@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import shopLogo from "../images/shop-logo.svg"
+import shopLogo from "../images/shop-logo.svg";
 
 export default function Footer() {
   return (
@@ -15,15 +15,17 @@ export default function Footer() {
               src={shopLogo}
               alt="footer-logo"
             />
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s.
+            Our commitment to quality, craftsmanship, and outstanding customer
+            service has made us your trusted destination for timeless treasures.
+            Discover your perfect piece and let it become a part of your unique
+            story today.
           </Col>
           <Col lg={4} className="my-3" style={{ lineHeight: "2" }}>
             <p style={{ fontWeight: 600 }}>Contact Us</p>
-            Lorem ipsum is simply dummy <br />
-            rukshanajewelry@gmail.com <br />
-            (012) 123 456 789
+            "Elevate Your Elegance: Adorn Your Story"
+            <br />
+            info@jewelhavenluxury.com <br />
+            (555) 123-4567
           </Col>
           <Col
             lg={4}

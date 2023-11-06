@@ -5,7 +5,9 @@ export default function Testimonial() {
   return (
     <div className="home-testi-section py-4">
       <div className="home-testi-text">
-        <h5 style={{ color: "black", fontWeight: 700, fontSize: 30, margin: 0 }}>
+        <h5
+          style={{ color: "black", fontWeight: 700, fontSize: 30, margin: 0 }}
+        >
           Testimonials
         </h5>
         <p>What they say</p>
@@ -30,9 +32,8 @@ export default function Testimonial() {
           />
         </div>
         <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s,
+          I've never received so many compliments on a piece of jewelry before;
+          [Your Shop Name] truly brings out the best in every design.
         </p>
         <img
           width={50}

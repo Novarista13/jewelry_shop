@@ -11,7 +11,7 @@ import shopLogo from "../images/shop-logo-nav.svg";
 
 function NavBar() {
   return (
-    <Navbar expand="lg" className="navbar-section">
+    <Navbar collapseOnSelect expand="lg" className="navbar-section">
       <Container>
         <Navbar.Brand href="#home">
           <img
@@ -27,32 +27,32 @@ function NavBar() {
             <Nav.Item>
               <Nav.Link href="#">
                 <Link className="nav-links" to="/home">
-                Home
-                <FiChevronDown />
+                  Home
+                  <FiChevronDown />
                 </Link>
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="#">
                 <Link className="nav-links" to="/shop">
-                Shop
-                <FiChevronDown />
+                  Shop
+                  <FiChevronDown />
                 </Link>
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="#">
                 <Link className="nav-links" to="/about">
-                About Us
-                <FiChevronDown />
+                  About Us
+                  <FiChevronDown />
                 </Link>
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="#">
                 <Link className="nav-links" to="/contact">
-                Contact Us
-                <FiChevronDown />
+                  Contact Us
+                  <FiChevronDown />
                 </Link>
               </Nav.Link>
             </Nav.Item>
@@ -72,9 +72,9 @@ function NavBar() {
           </Form>
           <Nav>
             <Nav.Link href="#">
-              {/* <Link className="nav-links" to="/contact"> */}
-              <PiUserCircleBold style={{ height: 50, width: 25 }} />
-              {/* </Link> */}
+              <Link className="nav-links" to="/login">
+                <PiUserCircleBold style={{ height: 50, width: 25 }} />
+              </Link>
             </Nav.Link>
             <Nav.Link href="#">
               {/* <Link className="nav-links" to="/contact"> */}

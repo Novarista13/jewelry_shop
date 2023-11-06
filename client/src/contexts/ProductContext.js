@@ -1,5 +1,5 @@
-import { useState, createContext } from "react";
-import { pageData } from "../data/pageData";
+import { useState, createContext, useEffect } from "react";
+import { useApiFetch } from "./ApiConnect";
 
 export const ProductContext = createContext();
 let checks = localStorage.getItem("checkValue");
@@ -9,82 +9,98 @@ let prices = localStorage.getItem("price");
 const priceValue = JSON.parse(prices);
 
 export default function RecipesContextProvider({ children }) {
-  const [products, setProducts] = useState(pageData);
+  const [products, setProducts] = useState([]);
   const [price, setPrice] = useState(
-    priceValue ? priceValue : { startPrice: 0, endPrice: 200 }
+    priceValue ? priceValue : { startPrice: 200, endPrice: 1200 }
   );
   const [checkValue, setCheckValue] = useState(checked ? checked : []);
 
-  let checkResultProduct;
-  let typeCheck = [];
-  let otherCheck = [];
-  let stockCheck = [];
-  let priceCheck = [];
+  const url = "http://localhost:3001/api/jewelleries";
+  useApiFetch(url, setProducts);
 
-  if (price.startPrice > 0) {
-    let data = products;
-    if (checkResultProduct) data = checkResultProduct;
-    priceCheck = data.filter((item) => {
+  let checkResultProduct = products;
+
+  if (price.startPrice > 200) {
+    let data = checkResultProduct;
+    let priceCheck = data.filter((item) => {
       return item.price >= price.startPrice && item.price <= price.endPrice;
     });
-  }
-
-  if (checkValue.some((v) => v.type === "Product type")) {
-    let types = checkValue.filter((v) => v.type === "Product type");
-    let data = products;
-    if (priceCheck.length > 0) data = priceCheck;
-    if (stockCheck.length > 0) data = stockCheck;
-    if (otherCheck.length > 0) data = otherCheck;
-
-    typeCheck = checkResult(
-      types.map((t) =>
-        data.filter((item) => {
-          return item.category.includes(t.item);
-        })
-      )
-    );
+    checkResultProduct = priceCheck;
   }
 
   if (checkValue.some((v) => v.type === "Availablity")) {
     let otherTypes = checkValue.filter((v) => v.type === "Availablity");
-    let data = products;
-    if (priceCheck.length > 0) data = priceCheck;
-    if (typeCheck.length > 0) data = typeCheck;
-    if (otherCheck.length > 0) data = otherCheck;
+    let data = checkResultProduct;
 
-    stockCheck = checkResult(
+    let stockCheck = checkResult(
       otherTypes.map((t) =>
         t.item === "In Stock"
           ? data.filter((item) => {
-              return item.stock;
+              return item.is_instock;
             })
           : data.filter((item) => {
-              return !item.stock;
+              return !item.is_instock;
             })
+      )
+    );
+    checkResultProduct = stockCheck;
+  }
+
+  function filterAllChecks(checkType, typeName) {
+    let types = checkValue.filter((v) => v.type === typeName);
+    let data = checkResultProduct;
+    return checkResult(
+      types.map((t) =>
+        checkType === "type"
+          ? data.filter((item) => {
+              return item.type.includes(t.item);
+            })
+          : checkType === "color"
+          ? data.filter((item) => {
+              return item.color.toLowerCase().includes(t.item.toLowerCase());
+            })
+          : checkType === "size"
+          ? data.filter((item) => {
+              return parseInt(Math.round(item.size)) === parseInt(t.item);
+            })
+          : checkType === "brand"
+          ? data.filter((item) => {
+              return item.brand.includes(
+                t.item.toLowerCase().replace(/ /g, "")
+              );
+            })
+          : checkType === "metal"
+          ? data.filter((item) => {
+              return item.metal.toLowerCase().includes(t.item.toLowerCase());
+            })
+          : null
       )
     );
   }
 
-  if (
-    checkValue.some(
-      (v) => v.type !== "Product type" || v.type !== "Availablity"
-    )
-  ) {
-    let otherTypes = checkValue.filter(
-      (v) => v.type !== "Product type" || v.type !== "Availablity"
-    );
-    let data = products;
-    if (priceCheck.length > 0) data = priceCheck;
-    if (stockCheck.length > 0) data = stockCheck;
-    if (typeCheck.length > 0) data = typeCheck;
+  if (checkValue.some((v) => v.type === "Product type")) {
+    let filteredValue = filterAllChecks("type", "Product type");
+    checkResultProduct = filteredValue ? filteredValue : [];
+  }
 
-    otherCheck = checkResult(
-      otherTypes.map((t) =>
-        data.filter((item) => {
-          return item.color.includes(t.item) || item.size === t.item;
-        })
-      )
-    );
+  if (checkValue.some((v) => v.type === "Color")) {
+    let filteredValue = filterAllChecks("color", "Color");
+    checkResultProduct = filteredValue ? filteredValue : [];
+  }
+
+  if (checkValue.some((v) => v.type === "Size")) {
+    let filteredValue = filterAllChecks("size", "Size");
+    checkResultProduct = filteredValue ? filteredValue : [];
+  }
+
+  if (checkValue.some((v) => v.type === "Brand")) {
+    let filteredValue = filterAllChecks("brand", "Brand");
+    checkResultProduct = filteredValue ? filteredValue : [];
+  }
+
+  if (checkValue.some((v) => v.type === "Material")) {
+    let filteredValue = filterAllChecks("metal", "Material");
+    checkResultProduct = filteredValue ? filteredValue : [];
   }
 
   function checkResult(data) {
@@ -98,18 +114,6 @@ export default function RecipesContextProvider({ children }) {
     let uniqueProduct = Array.from(uniqueSet).map(JSON.parse);
 
     return [...new Set(uniqueProduct)];
-  }
-
-  if (otherCheck.length > 0) {
-    checkResultProduct = otherCheck;
-  } else if (stockCheck.length > 0) {
-    checkResultProduct = stockCheck;
-  } else if (typeCheck.length > 0) {
-    checkResultProduct = typeCheck;
-  } else if (priceCheck.length > 0) {
-    checkResultProduct = priceCheck;
-  } else {
-    checkResultProduct = products;
   }
 
   return (
