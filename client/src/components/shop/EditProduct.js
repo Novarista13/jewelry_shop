@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { useApiFetch } from "../../contexts/ApiConnect";
+import { useApiFetch, apiEdit } from "../../contexts/ApiConnect";
 import ProductForm from "./ProductForm";
 
 export default function EditProductModal({ initialData }) {
@@ -19,15 +19,14 @@ export default function EditProductModal({ initialData }) {
   );
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     setShow(false);
-    // apiCreate(e, api, data, setApiStatus);
+    //  apiEdit(e, url, data, id, setStatus);
   };
 
   return (
     <>
-      <div className="mx-auto">
-        <button onClick={handleShow}>Edit</button>
-      </div>
+      <button onClick={handleShow}>Edit</button>
 
       <Modal
         show={show}

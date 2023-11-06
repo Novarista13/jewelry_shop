@@ -1,4 +1,3 @@
-
 export default function ContactInfo() {
   return (
     <div
@@ -9,15 +8,23 @@ export default function ContactInfo() {
         Contact Us
       </h5>
       <p className="mb-4">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s when an unknown printer took a galley of type.
+        Our commitment to quality, craftsmanship, and outstanding customer
+        service has made us your trusted destination for timeless treasures.
+        Discover your perfect piece and let it become a part of your unique
+        story today.
       </p>
-      <p>Address : Lorem ipsum is a dummy text 402</p>
-      <p>Email : Info@loremipsum.com</p>
-      <p>Phone : +88012345678</p>
+      <p>Address : Elegance County Jewelhaven, JWL 12345</p>
+      <p>Email : info@jewelhavenluxury.com</p>
+      <p>Phone : (555) 123-4567</p>
       <p>
-        <span style={{ display: "block", color: "black", fontWeight: 600, fontSize: 16 }}>
+        <span
+          style={{
+            display: "block",
+            color: "black",
+            fontWeight: 600,
+            fontSize: 16,
+          }}
+        >
           Working Hours
         </span>
         Monday - Saturday :08AM-22PM

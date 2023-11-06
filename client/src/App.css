@@ -254,11 +254,13 @@ a.page-link:hover {
   border: 1px solid #efefef;
 }
 
-.form-check-input, .form-select:focus {
+.form-check-input,
+.form-select:focus {
   border: 2px solid #f3839b !important;
 }
 
-.form-check-input:focus, .form-select:focus {
+.form-check-input:focus,
+.form-select:focus {
   box-shadow: 0 0 0 0.25rem #f7ced7 !important;
   outline: 0 !important;
 }
@@ -388,6 +390,73 @@ button.selected-value {
 .contact-info-section {
   font-size: 14px;
   color: #595959;
+}
+
+/* Admin Section */
+
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Playfair+Display&display=swap");
+
+.admin-section h2,
+h3,
+h4,
+h5 {
+  font-family: "Lato", sans-serif;
+  font-family: "Playfair Display", serif;
+}
+
+.admin-section .card {
+  border-radius: 50px;
+  background: #ffffff;
+  box-shadow: 20px 20px 50px #9c9c9c, -20px -20px 50px #ffffff;
+}
+
+.carousel-indicators [data-bs-target] {
+  width: 17px !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  display: none !important;
+}
+
+.login-form {
+  text-align: left;
+  margin: 30% auto;
+  max-width: 280px;
+}
+
+.login-form .form-control {
+  border: 2px solid pink;
+}
+
+.login-form-button {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.admin-section-link {
+  text-decoration: none !important;
+  color: #f3839b !important;
+}
+
+.modal-image {
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 0;
+}
+
+@media (max-width: 576px) {
+  .modal-image {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+  }
+  .login-form {
+    margin: 10% auto;
+  }
 }
 
 /* Footer Section */

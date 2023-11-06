@@ -5,17 +5,17 @@ import quality from "../images/about/quality.svg";
 export const advantages = [
   {
     title: "Free Delivery",
-    text: "Lorem Ipsum is simply dummy text of the printing",
+    text: "we offer free and swift delivery to your doorstep",
     svg: truck,
   },
   {
     title: "Fast Delivery",
-    text: "Lorem Ipsum is simply dummy text of the printing",
+    text: " we understand that the excitement of receiving your jewelry",
     svg: plane,
   },
   {
     title: "100% Quality",
-    text: "Lorem Ipsum is simply dummy text of the printing",
+    text: "We take pride in our commitment to 100% quality guarantee",
     svg: quality,
   },
 ];

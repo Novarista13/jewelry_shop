@@ -5,12 +5,19 @@ import Col from "react-bootstrap/Col";
 import { FaCircle } from "react-icons/fa6";
 import product from "../../images/home/product.png";
 import EditProductModal from "./EditProduct";
+// import { apiDelete } from "../../contexts/ApiConnect";
 
 export default function ProductModal({ productData, children }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const deleteHandler = () => {
+    // apiDelete(e, url, id, setStatus);
+    setShow(false);
+  };
+
   return (
     <>
       <div>
@@ -71,7 +78,12 @@ export default function ProductModal({ productData, children }) {
                 <li>size : {productData.size}</li>
                 <li>metal : {productData.metal}</li>
               </ul>
-              <EditProductModal initialData={productData} />
+              <div className="mx-auto">
+                <button className="me-2" onClick={deleteHandler}>
+                  Delete Item
+                </button>
+                <EditProductModal initialData={productData} />
+              </div>
             </Col>
           </Row>
         </Modal.Body>
