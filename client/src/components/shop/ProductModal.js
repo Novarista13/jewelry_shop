@@ -5,19 +5,25 @@ import Col from "react-bootstrap/Col";
 import { FaCircle } from "react-icons/fa6";
 import product from "../../images/home/product.png";
 import EditProductModal from "./EditProduct";
-// import { apiDelete } from "../../contexts/ApiConnect";
+import { apiDelete } from "../../api/productApi";
+import { useContext } from "react";
+import { UserIdContext } from "../../contexts/UserContext";
 
 export default function ProductModal({ productData, children }) {
   const [show, setShow] = useState(false);
+  const [apiStatus, setApiStatus] = useState();
+
+  const { userId } = useContext(UserIdContext);
+  const refresh = () => window.location.reload(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const deleteHandler = () => {
-    // apiDelete(e, url, id, setStatus);
+  const url = "http://localhost:3001/api/jewelleries";
+  const deleteHandler = (e, id) => {
+    apiDelete(e, url, id, setApiStatus);
     setShow(false);
   };
-
   return (
     <>
       <div>
@@ -78,12 +84,22 @@ export default function ProductModal({ productData, children }) {
                 <li>size : {productData.size}</li>
                 <li>metal : {productData.metal}</li>
               </ul>
-              <div className="mx-auto">
-                <button className="me-2" onClick={deleteHandler}>
-                  Delete Item
-                </button>
-                <EditProductModal initialData={productData} />
-              </div>
+              {userId === "6548c2c31ae876ce6a019fc2" ? (
+                <div className="mx-auto">
+                  <button
+                    className="me-2"
+                    onClick={(e) => {
+                      deleteHandler(e, productData._id);
+                      setTimeout(() => {
+                        refresh();
+                      }, 1000);
+                    }}
+                  >
+                    Delete Item
+                  </button>
+                  <EditProductModal initialData={productData} />
+                </div>
+              ) : null}
             </Col>
           </Row>
         </Modal.Body>

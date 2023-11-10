@@ -1,5 +1,5 @@
-import { useState, createContext, useEffect } from "react";
-import { useApiFetch } from "./ApiConnect";
+import { useState, createContext } from "react";
+import { useApiFetch } from "../api/productApi";
 
 export const ProductContext = createContext();
 let checks = localStorage.getItem("checkValue");

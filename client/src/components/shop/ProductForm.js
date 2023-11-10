@@ -2,6 +2,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 
+
 export default function ProductForm({
   category,
   category_name,
@@ -143,6 +144,21 @@ export default function ProductForm({
               className="raw-mateirals"
               onChange={(e) =>
                 setData({ ...data, is_instock: e.target.checked })
+              }
+            />
+          </Col>
+          <Col>
+            <Form.Control
+              size="sm"
+              defaultValue={data.file}
+              name="image"
+              type="file"
+              onChange={(e) =>
+                setData({
+                  ...data,
+                  file: e.target.files[0],
+                  image: Date.now() + e.target.files[0].name,
+                })
               }
             />
           </Col>

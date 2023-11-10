@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
 import Pagination from "react-bootstrap/Pagination";
 import { useContext, useMemo } from "react";
-// import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
 import ProductSingle from "./ProductSingle";
 import { ProductContext } from "../../contexts/ProductContext";
-// import addBtn from "../../images/add-btn.svg";
-// import AddProductModal from "./AddProduct";
 
 export default function Paginator() {
   const { checkResultProduct } = useContext(ProductContext);
   const [state, setState] = useState({
     data: [],
-    limit: 10,
+    limit: 20,
     offset: 0,
     page: 3,
     activePage: 1,

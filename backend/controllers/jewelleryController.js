@@ -12,7 +12,6 @@ const postJew = asyncHandler(async(req,res)=>{
 
         const {name,image,price,color,category_name,type,brand,size,metal,featured,is_instock} = req.body;
 
-        const {name,price,color,category_name,type,brand,size,metal,featured,is_instock} = req.body;
         console.log(req.body);
 
         if(!name,!color,!price,!category_name,!type,!brand,!size,!metal){
@@ -66,7 +65,7 @@ const updateJew = asyncHandler(async(req,res)=>{
         if(selectedCategory){
 
         const updatedJew = await Jewellery.findByIdAndUpdate(req.params.id,{
-             $set:{...req.body,category_id:selectedCategory[0]._id}
+             $set:{...req.body,category_id:selectedCategory._id}
              },{ new: true })
         res.status(200).json(updatedJew)
 

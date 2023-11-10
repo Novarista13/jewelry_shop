@@ -3,16 +3,21 @@ import Col from "react-bootstrap/Col";
 import carousel1 from "../../images/admin/carousel1.jpg";
 import Card from "react-bootstrap/Card";
 import AdminProfile from "./AdminProfile";
+import { useContext, useState } from "react";
+import { useUserFetch } from "../../api/loginApi";
+import { UserIdContext } from "../../contexts/UserContext";
 
 export default function Admin() {
+  const [userData, setUserData] = useState({});
+  const { userId } = useContext(UserIdContext);
+  useUserFetch(userId, setUserData);
+
   return (
     <div className="admin-section px-3">
-      <Card
-        style={{margin: "50px auto", maxWidth: 900 }}
-      >
+      <Card style={{ margin: "50px auto", maxWidth: 900 }}>
         <Row>
           <Col sm={6} xs={12}>
-            <AdminProfile />
+            <AdminProfile data={userData} />
           </Col>
           <Col>
             <img

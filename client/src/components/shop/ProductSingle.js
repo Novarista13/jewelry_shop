@@ -6,6 +6,8 @@ import sold from "../../images/sold.svg";
 import ProductModal from "./ProductModal";
 import addBtn from "../../images/add-btn.svg";
 import AddProductModal from "./AddProduct";
+import { useContext } from "react";
+import { UserIdContext } from "../../contexts/UserContext";
 
 export default function ProductSingle({ data }) {
   const capitalizeWords = (str) => {
@@ -15,6 +17,8 @@ export default function ProductSingle({ data }) {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   };
+  const { userId } = useContext(UserIdContext);
+
   return (
     <Row className="mx-0">
       {data.map((p, id) => (
@@ -34,11 +38,18 @@ export default function ProductSingle({ data }) {
               <ProductModal productData={p}>
                 <img
                   width={200}
+                  height={200}
                   className="product-image"
                   style={{
                     display: !p.is_instock ? "none" : "block",
                   }}
-                  src={product}
+                  src={
+                    p.image.includes("https://")
+                      ? p.image
+                      : p.image
+                      ? "http://localhost:3001/images/" + p.image
+                      : product
+                  }
                   alt="footer-logo"
                 />
               </ProductModal>
@@ -71,7 +82,6 @@ export default function ProductSingle({ data }) {
                 : p.color,
             }}
           />
-          {/* ))} */}
           <p>
             {capitalizeWords(p.name)}{" "}
             <span
@@ -85,16 +95,18 @@ export default function ProductSingle({ data }) {
           </p>
         </Col>
       ))}
-      <Col lg={4} sm={6}>
-        <AddProductModal>
-          <img
-            width={200}
-            className="add-image mx-auto"
-            src={addBtn}
-            alt="add button"
-          />
-        </AddProductModal>
-      </Col>
+      {userId === "6548c2c31ae876ce6a019fc2" ? (
+        <Col lg={4} sm={6}>
+          <AddProductModal>
+            <img
+              width={200}
+              className="add-image mx-auto"
+              src={addBtn}
+              alt="add button"
+            />
+          </AddProductModal>
+        </Col>
+      ) : null}
     </Row>
   );
 }

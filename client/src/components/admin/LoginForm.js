@@ -1,7 +1,19 @@
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 
-export default function LoginForm({ h4, h2, button, p1, p2, link }) {
+export default function LoginForm({
+  register,
+  destainedLink,
+  h4,
+  h2,
+  button,
+  p1,
+  p2,
+  link,
+  data,
+  setData,
+  handleSubmit,
+}) {
   return (
     <div className="login-form p-md-0 p-sm-3">
       <h4 style={{ fontWeight: 600 }} className="mb-3">
@@ -10,16 +22,40 @@ export default function LoginForm({ h4, h2, button, p1, p2, link }) {
       <h2 style={{ fontWeight: 700, fontSize: 40 }} className="mb-4">
         {h2}
       </h2>
-      <Form>
+      <Form onSubmit={handleSubmit}>
+        {register ? (
+          <div className="my-3">
+            <Form.Control
+              size="md"
+              type="text"
+              name="username"
+              placeholder="Username"
+              onChange={(e) => setData({ ...data, username: e.target.value })}
+            />
+          </div>
+        ) : null}
         <div className="my-3">
-          <Form.Control size="md" type="email" placeholder="Email" />
+          <Form.Control
+            size="md"
+            type="email"
+            name="email"
+            defaultValue=""
+            placeholder="Email"
+            onChange={(e) => setData({ ...data, email: e.target.value })}
+          />
         </div>
         <div className="mb-3">
-          <Form.Control size="md" type="password" placeholder="Password" />
+          <Form.Control
+            size="md"
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={(e) => setData({ ...data, password: e.target.value })}
+          />
         </div>
-        <Link className="admin-section-link" to="/admin">
+        {/* <Link className="admin-section-link" to={destainedLink}> */}
           <button className="login-form-button">{button}</button>
-        </Link>
+        {/* </Link> */}
       </Form>
       <p className="my-4">
         {p1} have an account?{" "}

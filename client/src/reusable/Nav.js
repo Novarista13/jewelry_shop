@@ -8,8 +8,11 @@ import { FiChevronDown } from "react-icons/fi";
 import { BsSearch } from "react-icons/bs";
 import { PiUserCircleBold, PiHeart } from "react-icons/pi";
 import shopLogo from "../images/shop-logo-nav.svg";
+import { useContext } from "react";
+import { UserIdContext } from "../contexts/UserContext";
 
 function NavBar() {
+  const { userId } = useContext(UserIdContext);
   return (
     <Navbar collapseOnSelect expand="lg" className="navbar-section">
       <Container>
@@ -72,7 +75,7 @@ function NavBar() {
           </Form>
           <Nav>
             <Nav.Link href="#">
-              <Link className="nav-links" to="/login">
+              <Link className="nav-links" to={userId ? "admin" : "/login"}>
                 <PiUserCircleBold style={{ height: 50, width: 25 }} />
               </Link>
             </Nav.Link>

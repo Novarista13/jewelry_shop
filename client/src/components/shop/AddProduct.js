@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { apiCreate, useApiFetch } from "../../contexts/ApiConnect";
+import { apiCreate, useApiFetch } from "../../api/productApi";
 import ProductForm from "./ProductForm";
 
 export default function AddProductModal({ children }) {
@@ -12,13 +12,19 @@ export default function AddProductModal({ children }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  
+  const refresh = () => window.location.reload(true);
+
   const url = "http://localhost:3001/api/categories";
   useApiFetch(url, setCategory);
 
   const api = "http://localhost:3001/api/jewelleries";
   const handleSubmit = (e) => {
     setShow(false);
-    apiCreate(e, api, data, setApiStatus);
+    apiCreate(e, api, data, setApiStatus, setData);
+    setTimeout(() => {
+      refresh();
+    }, 1000);
   };
 
   return (
