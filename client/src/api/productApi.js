@@ -25,9 +25,8 @@ function imageCreate(data) {
   }
 }
 
-export function apiCreate(e, url, data, setStatus) {
-  const addInfo = async (e) => {
-    e.preventDefault();
+export function apiCreate(url, data, setStatus) {
+  const addInfo = async () => {
     imageCreate(data);
 
     const res = await fetch(url, {
@@ -40,12 +39,11 @@ export function apiCreate(e, url, data, setStatus) {
     const result = await res.json();
     setStatus(result);
   };
-  addInfo(e);
+  addInfo();
 }
 
-export function apiDelete(e, url, id, setStatus) {
-  const deleteInfo = async (e) => {
-    e.preventDefault();
+export function apiDelete(url, id, setStatus) {
+  const deleteInfo = async () => {
     const res = await fetch(`${url}/${id}`, {
       method: "DELETE",
     });
@@ -53,12 +51,11 @@ export function apiDelete(e, url, id, setStatus) {
     console.log(result);
     setStatus(result);
   };
-  deleteInfo(e);
+  deleteInfo();
 }
 
-export function apiEdit(e, url, data, id, setStatus) {
-  const editInfo = async (e) => {
-    e.preventDefault();
+export function apiEdit(url, data, id, setStatus) {
+  const editInfo = async () => {
     imageCreate(data);
     const res = await fetch(`${url}/${id}`, {
       method: "PUT",
@@ -71,5 +68,5 @@ export function apiEdit(e, url, data, id, setStatus) {
     console.log(result);
     setStatus(result);
   };
-  editInfo(e);
+  editInfo();
 }

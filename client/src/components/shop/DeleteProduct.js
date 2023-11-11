@@ -1,12 +1,9 @@
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { apiCreate, useApiFetch } from "../../api/productApi";
-import ProductForm from "./ProductForm";
+import { apiDelete } from "../../api/productApi";
 
-export default function AddProductModal({ children }) {
+export default function DeleteProduct({ id }) {
   const [show, setShow] = useState(false);
-  const [data, setData] = useState({});
-  const [category, setCategory] = useState([]);
   const [apiStatus, setApiStatus] = useState();
 
   const handleClose = () => setShow(false);
@@ -14,14 +11,11 @@ export default function AddProductModal({ children }) {
 
   const refresh = () => window.location.reload(true);
 
-  const url = "http://localhost:3001/api/categories";
-  useApiFetch(url, setCategory);
-
-  const api = "http://localhost:3001/api/jewelleries";
-  const handleSubmit = (e) => {
+  const url = "http://localhost:3001/api/jewelleries";
+  const handleClick = (e) => {
     e.preventDefault();
+    apiDelete(url, id, setApiStatus);
     setShow(false);
-    apiCreate(api, data, setApiStatus, setData);
     setTimeout(() => {
       refresh();
     }, 1000);
@@ -29,11 +23,7 @@ export default function AddProductModal({ children }) {
 
   return (
     <>
-      <div>
-        <button className="work-modal-button" onClick={handleShow}>
-          {children}
-        </button>
-      </div>
+      <button onClick={handleShow}>Delete Item</button>
 
       <Modal
         show={show}
@@ -44,14 +34,14 @@ export default function AddProductModal({ children }) {
         <Modal.Header closeButton className="border-0"></Modal.Header>
         <Modal.Body>
           <h5 style={{ fontWeight: 600 }} className="mb-3 text-center">
-            Add New Product
+            Are You Sure you want to delete?
           </h5>
-          <ProductForm
-            category={category}
-            handleSubmit={handleSubmit}
-            data={data}
-            setData={setData}
-          />
+          <div className="mx-auto my-3 d-flex justify-content-center">
+            <button className="mx-3" onClick={handleClick}>
+              Yes
+            </button>
+            <button onClick={() => setShow(false)}>Cancel</button>
+          </div>
         </Modal.Body>
       </Modal>
     </>

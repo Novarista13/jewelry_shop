@@ -26,7 +26,7 @@ export default function ProductSingle({ data }) {
           lg={4}
           sm={6}
           key={id}
-          className={!p.is_instock ? "sold p-0" : "p-0"}
+          className={!p.is_instock ? "sold p-0 my-3" : "p-0 my-3"}
         >
           <div
             className={!p.is_instock ? "sold-img product-image" : null}
@@ -63,7 +63,7 @@ export default function ProductSingle({ data }) {
               alt="footer-logo"
             />
           </div>
-          <div className="my-2">{p.type ? capitalizeWords(p.type) : null}</div>
+          {/* <div className="my-2">{p.type ? capitalizeWords(p.type) : null}</div> */}
           {/* {p.color.map((c, id) => ( */}
           <FaCircle
             key={id}

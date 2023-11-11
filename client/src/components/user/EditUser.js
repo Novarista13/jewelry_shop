@@ -1,12 +1,11 @@
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { apiCreate, useApiFetch } from "../../api/productApi";
-import ProductForm from "./ProductForm";
+import EditUserForm from "./EditUserForm";
+import { userEdit } from "../../api/loginApi";
 
-export default function AddProductModal({ children }) {
+export default function EditUser({ initialData }) {
   const [show, setShow] = useState(false);
-  const [data, setData] = useState({});
-  const [category, setCategory] = useState([]);
+  const [data, setData] = useState(initialData);
   const [apiStatus, setApiStatus] = useState();
 
   const handleClose = () => setShow(false);
@@ -14,14 +13,11 @@ export default function AddProductModal({ children }) {
 
   const refresh = () => window.location.reload(true);
 
-  const url = "http://localhost:3001/api/categories";
-  useApiFetch(url, setCategory);
-
-  const api = "http://localhost:3001/api/jewelleries";
   const handleSubmit = (e) => {
     e.preventDefault();
+    userEdit(data, data._id, setApiStatus);
+    console.log(data);
     setShow(false);
-    apiCreate(api, data, setApiStatus, setData);
     setTimeout(() => {
       refresh();
     }, 1000);
@@ -29,11 +25,9 @@ export default function AddProductModal({ children }) {
 
   return (
     <>
-      <div>
-        <button className="work-modal-button" onClick={handleShow}>
-          {children}
-        </button>
-      </div>
+      <button className="me-2" onClick={handleShow}>
+        Edit User
+      </button>
 
       <Modal
         show={show}
@@ -44,13 +38,12 @@ export default function AddProductModal({ children }) {
         <Modal.Header closeButton className="border-0"></Modal.Header>
         <Modal.Body>
           <h5 style={{ fontWeight: 600 }} className="mb-3 text-center">
-            Add New Product
+            Edit User Info
           </h5>
-          <ProductForm
-            category={category}
-            handleSubmit={handleSubmit}
-            data={data}
+          <EditUserForm
+            data={initialData}
             setData={setData}
+            handleSubmit={handleSubmit}
           />
         </Modal.Body>
       </Modal>

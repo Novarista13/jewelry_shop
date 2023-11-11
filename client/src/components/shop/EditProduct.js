@@ -5,7 +5,7 @@ import ProductForm from "./ProductForm";
 
 export default function EditProductModal({ initialData }) {
   const [show, setShow] = useState(false);
-  const [data, setData] = useState({});
+  const [data, setData] = useState(initialData);
   const [category, setCategory] = useState([]);
   const [apiStatus, setApiStatus] = useState();
 
@@ -19,20 +19,20 @@ export default function EditProductModal({ initialData }) {
   let singleCategory = category.filter(
     (c) => c._id === initialData.category_id
   );
-    
+
   const api = "http://localhost:3001/api/jewelleries";
   const handleSubmit = (e, id) => {
     e.preventDefault();
-    apiEdit(e, api, data, id, setApiStatus);
+    apiEdit(api, data, id, setApiStatus);
     setShow(false);
     setTimeout(() => {
       refresh();
     }, 1000);
   };
-  
+
   return (
     <>
-      <button onClick={handleShow}>Edit</button>
+      <button className="me-2" onClick={handleShow}>Edit Item</button>
 
       <Modal
         show={show}

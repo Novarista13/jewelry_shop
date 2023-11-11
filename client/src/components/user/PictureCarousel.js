@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import carousel1 from "../../images/admin/carousel1.jpg";
-import carousel2 from "../../images/admin/carousel2.jpg";
-import carousel3 from "../../images/admin/carousel3.jpg";
+import carousel1 from "../../images/user/carousel1.jpg";
+import carousel2 from "../../images/user/carousel2.jpg";
+import carousel3 from "../../images/user/carousel3.jpg";
 
 export default function PictureCarousel() {
   const [index, setIndex] = useState(0);

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import EditUser from "./EditUser";
+import DeleteUser from "./DeleteUser";
 
-export default function AdminProfile({ data }) {
+export default function UserProfile({ data }) {
   const refresh = () => window.location.reload(true);
   return (
     <div className="login-form p-md-0 p-sm-3">
@@ -16,8 +18,13 @@ export default function AdminProfile({ data }) {
       <h5 style={{ fontWeight: 600 }} className="mb-3">
         Gmail: <span style={{ color: "#f3839b" }}>{data.email}</span>
       </h5>
+      <div className="mx-auto mt-5  d-flex justify-content-center">
+        <EditUser initialData={data} />
+        <DeleteUser initialData={data} />
+      </div>
+
       <Link
-        className="admin-section-link"
+        className="user-section-link d-inline"
         to="/login"
         onClick={() => {
           localStorage.clear();

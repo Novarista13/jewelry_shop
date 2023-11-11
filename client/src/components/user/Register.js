@@ -27,7 +27,7 @@ export default function Register() {
     }, 3000);
   };
   return (
-    <div className="admin-section px-3">
+    <div className="user-section px-3">
       <Card style={{ margin: "50px auto", maxWidth: 900 }}>
         <Row>
           <Col sm={6} xs={12}>

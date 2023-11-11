@@ -2,6 +2,45 @@
   text-align: center;
 }
 
+/* Animation */
+.animate-type {
+  overflow: hidden;
+}
+
+.animate-type div:first-child,
+.animate-type div:nth-child(3) {
+  transition: all 2s;
+  transform: translateX(-150%);
+  opacity: 0;
+}
+.animate-type div:last-child,
+.animate-type div:nth-child(2) {
+  transition: all 2s;
+  transform: translateX(150%);
+  opacity: 0;
+}
+
+.animate-type .slide-in {
+  transition: all 2s;
+  transform: translateX(0%) !important;
+  opacity: 1 !important;
+}
+
+.animate-service {
+  overflow: hidden;
+}
+
+.animate-service div {
+  transition: all 1s;
+  transform: scale(0);
+}
+
+.animate-service .slide-in {
+  transition: all 1s;
+  transform: scale(1);
+}
+
+
 /* Nav Section */
 
 .navbar-section {
@@ -118,9 +157,27 @@ button {
   margin: 40px auto;
 }
 
+.product-container {
+  height: 280px;
+  overflow: hidden;
+}
+
 .product-image {
   display: block;
   margin: 0 auto !important;
+  transition: all 1s;
+}
+
+.product-caption {
+  transition: all 1s;
+  transform: translateY(100%);
+}
+
+.product-container:hover .product-caption {
+  transform: translateY(-38%);
+}
+.product-container:hover .product-image {
+  transform: translateY(-20%);
 }
 
 @media (max-width: 800px) {
@@ -392,11 +449,11 @@ button.selected-value {
   color: #595959;
 }
 
-/* Admin Section */
+/* User Section */
 
 @import url("https://fonts.googleapis.com/css2?family=Lato&family=Playfair+Display&display=swap");
 
-.admin-section h2,
+.user-section h2,
 h3,
 h4,
 h5 {
@@ -404,7 +461,7 @@ h5 {
   font-family: "Playfair Display", serif;
 }
 
-.admin-section .card {
+.user-section .card {
   border-radius: 50px;
   background: #ffffff;
   box-shadow: 20px 20px 50px #9c9c9c, -20px -20px 50px #ffffff;
@@ -437,7 +494,8 @@ h5 {
   width: 100%;
 }
 
-.admin-section-link {
+
+.user-section-link {
   text-decoration: none !important;
   color: #f3839b !important;
 }

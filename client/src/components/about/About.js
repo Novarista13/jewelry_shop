@@ -1,5 +1,5 @@
 import Hero from "./Hero";
-import Testimonial from "../home/Testimonial";
+import Testimonial from "../../reusable/Testimonial";
 import Advantage from "./Advantage";
 
 export default function About() {

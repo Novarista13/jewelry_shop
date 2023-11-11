@@ -53,13 +53,13 @@ export default function LoginForm({
             onChange={(e) => setData({ ...data, password: e.target.value })}
           />
         </div>
-        {/* <Link className="admin-section-link" to={destainedLink}> */}
+        {/* <Link className="user-section-link" to={destainedLink}> */}
           <button className="login-form-button">{button}</button>
         {/* </Link> */}
       </Form>
       <p className="my-4">
         {p1} have an account?{" "}
-        <Link className="admin-section-link" to={link}>
+        <Link className="user-section-link" to={link}>
           {p2}
         </Link>
       </p>

@@ -22,9 +22,8 @@ export default function Login() {
     setTimeout(() => {
       if (userData._id) {
         setUserId(userData._id);
-        console.log(userData._id);
         localStorage.setItem("userId", userData._id);
-        navigate("/admin");
+        navigate("/user");
       } else {
         alert("Failed Login");
       }
@@ -32,7 +31,7 @@ export default function Login() {
   };
 
   return (
-    <div className="admin-section px-3">
+    <div className="user-section px-3">
       <Card style={{ margin: "50px auto", maxWidth: 900 }}>
         <Row>
           <Col sm={6} xs={12}>
@@ -45,7 +44,7 @@ export default function Login() {
               link="/register"
               data={data}
               setData={setData}
-              destainedLink="/admin"
+              destainedLink="/user"
               handleSubmit={handleSubmit}
             />
           </Col>

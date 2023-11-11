@@ -75,7 +75,7 @@ function NavBar() {
           </Form>
           <Nav>
             <Nav.Link href="#">
-              <Link className="nav-links" to={userId ? "admin" : "/login"}>
+              <Link className="nav-links" to={userId ? "/user" : "/login"}>
                 <PiUserCircleBold style={{ height: 50, width: 25 }} />
               </Link>
             </Nav.Link>

@@ -5,7 +5,7 @@ import Hero from "./Hero";
 import Product from "./Product";
 import ProductType from "./ProductType";
 import Service from "./Service";
-import Testimonial from "./Testimonial";
+import Testimonial from "../../reusable/Testimonial";
 
 export default function Home() {
   return (

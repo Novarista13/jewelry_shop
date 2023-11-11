@@ -1,23 +1,23 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import carousel1 from "../../images/admin/carousel1.jpg";
+import carousel1 from "../../images/user/carousel1.jpg";
 import Card from "react-bootstrap/Card";
-import AdminProfile from "./AdminProfile";
+import UserProfile from "./UserProfile";
 import { useContext, useState } from "react";
 import { useUserFetch } from "../../api/loginApi";
 import { UserIdContext } from "../../contexts/UserContext";
 
-export default function Admin() {
+export default function User() {
   const [userData, setUserData] = useState({});
   const { userId } = useContext(UserIdContext);
   useUserFetch(userId, setUserData);
 
   return (
-    <div className="admin-section px-3">
+    <div className="user-section px-3">
       <Card style={{ margin: "50px auto", maxWidth: 900 }}>
         <Row>
           <Col sm={6} xs={12}>
-            <AdminProfile data={userData} />
+            <UserProfile data={userData} />
           </Col>
           <Col>
             <img
