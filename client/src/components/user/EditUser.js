@@ -2,11 +2,11 @@ import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import EditUserForm from "./EditUserForm";
 import { userEdit } from "../../api/loginApi";
+import { NotificationManager } from "react-notifications";
 
 export default function EditUser({ initialData }) {
   const [show, setShow] = useState(false);
   const [data, setData] = useState(initialData);
-  const [apiStatus, setApiStatus] = useState();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -15,12 +15,31 @@ export default function EditUser({ initialData }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    userEdit(data, data._id, setApiStatus);
-    console.log(data);
-    setShow(false);
-    setTimeout(() => {
-      refresh();
-    }, 1000);
+    if (
+      data.username !== initialData.username ||
+      data.email !== initialData.email ||
+      data.password
+    ) {
+      userEdit(data).then((value) => {
+        if (value) {
+          NotificationManager.success(
+            "User Edited Successfully",
+            "Success",
+            3000,
+            setTimeout(() => {
+              refresh();
+            }, 2000)
+          );
+        }
+      });
+      setShow(false);
+    } else {
+      NotificationManager.error(
+        "You can't edit without changing any value!",
+        "User Edit Failed",
+        3000
+      );
+    }
   };
 
   return (
@@ -41,7 +60,7 @@ export default function EditUser({ initialData }) {
             Edit User Info
           </h5>
           <EditUserForm
-            data={initialData}
+            data={data}
             setData={setData}
             handleSubmit={handleSubmit}
           />

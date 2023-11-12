@@ -7,7 +7,10 @@ import Animation from "../../reusable/Animation";
 export default function Product() {
   return (
     <div className="home-product-section">
-      <Container className="home-product-container" style={{ maxWidth: 850 }}>
+      <Container
+        className="home-product-container"
+        style={{ maxWidth: 850, marginTop: "3.7em" }}
+      >
         <Animation>
           <div className="animate-service">
             <div>
@@ -25,7 +28,7 @@ export default function Product() {
         <div className="home-products">
           <Row className="home-products-row my-5">
             {tempData.map((p, id) => (
-              <SingleProduct p={p} id={id} />
+              <SingleProduct key={id} p={p} id={id} />
             ))}
           </Row>
         </div>

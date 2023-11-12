@@ -11,14 +11,12 @@ import DeleteProduct from "./DeleteProduct";
 
 export default function ProductModal({ productData, children }) {
   const [show, setShow] = useState(false);
-  const [apiStatus, setApiStatus] = useState();
 
   const { userId } = useContext(UserIdContext);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  
   return (
     <>
       <div>
@@ -40,7 +38,13 @@ export default function ProductModal({ productData, children }) {
               <img
                 width={300}
                 className="modal-image mx-auto"
-                src={product}
+                src={
+                  productData.image.includes("https://")
+                    ? productData.image
+                    : productData.image
+                    ? "http://localhost:3001/images/" + productData.image
+                    : product
+                }
                 alt={product}
               />
             </Col>
@@ -81,8 +85,11 @@ export default function ProductModal({ productData, children }) {
               </ul>
               {userId === "6548c2c31ae876ce6a019fc2" ? (
                 <div className="mx-auto">
-                  <EditProductModal initialData={productData} />
-                  <DeleteProduct id={productData._id} />
+                  <EditProductModal
+                    initialData={productData}
+                    setModalShow={setShow}
+                  />
+                  <DeleteProduct id={productData._id} setModalShow={setShow} />
                 </div>
               ) : null}
             </Col>

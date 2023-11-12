@@ -21,11 +21,10 @@ function imageCreate(data) {
       method: "POST",
       body: imgData,
     });
-    console.log(res);
   }
 }
 
-export function apiCreate(url, data, setStatus) {
+export function apiCreate(url, data) {
   const addInfo = async () => {
     imageCreate(data);
 
@@ -37,27 +36,26 @@ export function apiCreate(url, data, setStatus) {
       },
     });
     const result = await res.json();
-    setStatus(result);
+    return result;
   };
-  addInfo();
+  return addInfo();
 }
 
-export function apiDelete(url, id, setStatus) {
+export function apiDelete(url, id) {
   const deleteInfo = async () => {
     const res = await fetch(`${url}/${id}`, {
       method: "DELETE",
     });
     const result = await res.json();
-    console.log(result);
-    setStatus(result);
+    return result;
   };
-  deleteInfo();
+  return deleteInfo();
 }
 
-export function apiEdit(url, data, id, setStatus) {
+export function apiEdit(url, data) {
   const editInfo = async () => {
     imageCreate(data);
-    const res = await fetch(`${url}/${id}`, {
+    const res = await fetch(`${url}/${data._id}`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
@@ -65,8 +63,7 @@ export function apiEdit(url, data, id, setStatus) {
       },
     });
     const result = await res.json();
-    console.log(result);
-    setStatus(result);
+    return result;
   };
-  editInfo();
+  return editInfo();
 }

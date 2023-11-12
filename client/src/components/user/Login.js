@@ -7,27 +7,29 @@ import { useContext, useState } from "react";
 import { userAuth } from "../../api/loginApi";
 import { useNavigate } from "react-router-dom";
 import { UserIdContext } from "../../contexts/UserContext";
+import { NotificationManager } from "react-notifications";
 
 export default function Login() {
   const [data, setData] = useState({});
-  const [userData, setUserData] = useState({});
   const { setUserId } = useContext(UserIdContext);
   let navigate = useNavigate();
 
   const url = "http://localhost:3001/api/auth/login";
   const handleSubmit = (e) => {
     e.preventDefault();
-    userAuth(url, data, setUserData);
 
-    setTimeout(() => {
-      if (userData._id) {
-        setUserId(userData._id);
-        localStorage.setItem("userId", userData._id);
-        navigate("/user");
-      } else {
-        alert("Failed Login");
-      }
-    }, 3000);
+    userAuth(url, data).then((value) => {
+      setTimeout(() => {
+        if (value._id) {
+          setUserId(value._id);
+          localStorage.setItem("userId", value._id);
+          NotificationManager.success("Successfully Log in", "Success", 3000);
+          navigate("/user");
+        } else {
+          NotificationManager.error("Try Again!", "Log in Failed", 3000);
+        }
+      }, 2000);
+    });
   };
 
   return (

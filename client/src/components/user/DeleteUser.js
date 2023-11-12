@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { userDelete } from "../../api/loginApi";
+import { useNavigate } from "react-router-dom";
+import { NotificationManager } from "react-notifications";
 
 export default function DeleteUser({ initialData }) {
   const [show, setShow] = useState(false);
-  const [apiStatus, setApiStatus] = useState();
+  let navigate = useNavigate();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -12,12 +14,19 @@ export default function DeleteUser({ initialData }) {
   const refresh = () => window.location.reload(true);
 
   const handleClick = () => {
-    userDelete(initialData._id, setApiStatus);
+    userDelete(initialData._id).then((value) => {
+      NotificationManager.success(
+        value,
+        "Success",
+        3000,
+        setTimeout(() => {
+          refresh();
+        }, 2000)
+      );
+      navigate("/login");
+    });
     setShow(false);
     localStorage.clear();
-    setTimeout(() => {
-      refresh();
-    }, 1000);
   };
 
   return (

@@ -17,7 +17,7 @@ export default function User() {
       <Card style={{ margin: "50px auto", maxWidth: 900 }}>
         <Row>
           <Col sm={6} xs={12}>
-            <UserProfile data={userData} />
+            {userData._id ? <UserProfile data={userData} /> : null}
           </Col>
           <Col>
             <img

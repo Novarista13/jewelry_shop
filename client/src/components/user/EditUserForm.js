@@ -7,26 +7,52 @@ export default function EditUserForm({ handleSubmit, data, setData }) {
     <Form onSubmit={handleSubmit} className="modal-col mx-auto mb-5">
       <div className="mb-4">
         <Row>
-          <Col>
+          <Col sm={6} className="mt-3">
+            <Form.Label style={{ fontSize: "15px" }}>Name: </Form.Label>
             <Form.Control
               size="sm"
               name="name"
-              required
               defaultValue={data.username}
               type="text"
               placeholder="Name*"
-              onChange={(e) => setData({ ...data, username: e.target.value })}
+              onChange={(e) =>
+                setData({
+                  ...data,
+                  username: e.target.value,
+                })
+              }
             />
           </Col>
-          <Col>
+          <Col sm={6} className="mt-3">
+            <Form.Label style={{ fontSize: "15px" }}>Email: </Form.Label>
             <Form.Control
               size="sm"
-              required
               defaultValue={data.email}
               name="email"
               type="email"
               placeholder="Email*"
-              onChange={(e) => setData({ ...data, email: e.target.value })}
+              onChange={(e) =>
+                setData({
+                  ...data,
+                  email: e.target.value,
+                })
+              }
+            />
+          </Col>
+          <Col sm={6} className="mt-3">
+            <Form.Label style={{ fontSize: "15px" }}>Password: </Form.Label>
+            <Form.Control
+              size="sm"
+              defaultValue={data.password}
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={(e) =>
+                setData({
+                  ...data,
+                  password: e.target.value,
+                })
+              }
             />
           </Col>
         </Row>

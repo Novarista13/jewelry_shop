@@ -19,7 +19,7 @@ export default function FeaturedProduct() {
         <div className="home-products">
           <Row className="home-products-row my-5">
             {featuredTempData.map((p, id) => (
-              <SingleProduct p={p} id={id} />
+              <SingleProduct key={id} p={p} id={id} />
             ))}
           </Row>
         </div>

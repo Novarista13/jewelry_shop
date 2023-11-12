@@ -11,9 +11,9 @@ export function useUserFetch(id, setData) {
   }, [id, setData]);
 }
 
-export function userEdit(data, id, setStatus) {
+export function userEdit(data) {
   const editInfo = async () => {
-    const res = await fetch(`http://localhost:3001/api/users/${id}`, {
+    const res = await fetch(`http://localhost:3001/api/users/${data._id}`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
@@ -21,25 +21,24 @@ export function userEdit(data, id, setStatus) {
       },
     });
     const result = await res.json();
-    console.log(result);
-    setStatus(result);
+    return result;
   };
-  editInfo();
+  return editInfo();
 }
 
-export function userDelete(id, setStatus) {
+export function userDelete(id) {
   const deleteInfo = async () => {
     const res = await fetch(`http://localhost:3001/api/users/${id}`, {
       method: "DELETE",
     });
     const result = await res.json();
-    console.log(result);
-    setStatus(result);
+    return result;
   };
-  deleteInfo();
+  return deleteInfo();
 }
 
-export function userAuth(url, data, setUserData) {
+export function userAuth(url, data) {
+  // let userData;
   const userInfo = async () => {
     const res = await fetch(url, {
       method: "POST",
@@ -49,7 +48,7 @@ export function userAuth(url, data, setUserData) {
       },
     });
     const result = await res.json();
-    setUserData(result);
+    return result;
   };
-  userInfo();
+  return userInfo();
 }

@@ -2,12 +2,12 @@ import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { apiCreate, useApiFetch } from "../../api/productApi";
 import ProductForm from "./ProductForm";
+import { NotificationManager } from "react-notifications";
 
 export default function AddProductModal({ children }) {
   const [show, setShow] = useState(false);
   const [data, setData] = useState({});
   const [category, setCategory] = useState([]);
-  const [apiStatus, setApiStatus] = useState();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -21,10 +21,18 @@ export default function AddProductModal({ children }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setShow(false);
-    apiCreate(api, data, setApiStatus, setData);
-    setTimeout(() => {
-      refresh();
-    }, 1000);
+    apiCreate(api, data).then((value) => {
+      if (value) {
+        NotificationManager.success(
+          "Item Created Successfully",
+          "Success",
+          3000,
+          setTimeout(() => {
+            refresh();
+          }, 2000)
+        );
+      }
+    });
   };
 
   return (

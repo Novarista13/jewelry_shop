@@ -13,12 +13,15 @@ import Register from "./components/user/Register";
 import { useContext } from "react";
 import { UserIdContext } from "./contexts/UserContext";
 import Animation from "./reusable/Animation";
+import "react-notifications/lib/notifications.css";
+import { NotificationContainer } from "react-notifications";
 
 function App() {
   const { userId } = useContext(UserIdContext);
   return (
     <div className="App">
       <NavBar />
+      <NotificationContainer />
       <Current />
       <Animation />
       <Routes>

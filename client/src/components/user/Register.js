@@ -6,26 +6,31 @@ import Card from "react-bootstrap/Card";
 import { useState } from "react";
 import { userAuth } from "../../api/loginApi";
 import { useNavigate } from "react-router-dom";
+import { NotificationManager } from "react-notifications";
 
 export default function Register() {
   const [data, setData] = useState({});
-  const [userData, setUserData] = useState();
   let navigate = useNavigate();
 
   let url = "http://localhost:3001/api/auth/register";
   const handleSubmit = (e) => {
     e.preventDefault();
-    userAuth(url, data, setUserData);
-
-    setTimeout(() => {
-      if (userData.length > 0) {
-        alert("Registeration Success");
-        navigate("/login");
-      } else {
-        alert("Registeration Failed");
-      }
-    }, 3000);
+    userAuth(url, data).then((value) => {
+      setTimeout(() => {
+        if (value._id) {
+          NotificationManager.success(
+            "Successfully Registered",
+            "Success",
+            3000
+          );
+          navigate("/login");
+        } else {
+          NotificationManager.error("Try Again!", "Registeration Failed", 3000);
+        }
+      }, 3000);
+    });
   };
+
   return (
     <div className="user-section px-3">
       <Card style={{ margin: "50px auto", maxWidth: 900 }}>

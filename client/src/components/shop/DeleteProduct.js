@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { apiDelete } from "../../api/productApi";
+import { NotificationManager } from "react-notifications";
 
-export default function DeleteProduct({ id }) {
+export default function DeleteProduct({ id, setModalShow }) {
   const [show, setShow] = useState(false);
-  const [apiStatus, setApiStatus] = useState();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -14,11 +14,18 @@ export default function DeleteProduct({ id }) {
   const url = "http://localhost:3001/api/jewelleries";
   const handleClick = (e) => {
     e.preventDefault();
-    apiDelete(url, id, setApiStatus);
+    apiDelete(url, id).then((value) => {
+      NotificationManager.success(
+        value.message,
+        "Success",
+        3000,
+        setTimeout(() => {
+          refresh();
+        }, 2000)
+      );
+    });
     setShow(false);
-    setTimeout(() => {
-      refresh();
-    }, 1000);
+    setModalShow(false);
   };
 
   return (

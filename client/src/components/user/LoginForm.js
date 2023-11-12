@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 export default function LoginForm({
   register,
-  destainedLink,
   h4,
   h2,
   button,
@@ -53,9 +52,9 @@ export default function LoginForm({
             onChange={(e) => setData({ ...data, password: e.target.value })}
           />
         </div>
-        {/* <Link className="user-section-link" to={destainedLink}> */}
-          <button className="login-form-button">{button}</button>
-        {/* </Link> */}
+        <button type="submit" className="login-form-button">
+          {button}
+        </button>
       </Form>
       <p className="my-4">
         {p1} have an account?{" "}

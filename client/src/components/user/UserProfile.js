@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import EditUser from "./EditUser";
 import DeleteUser from "./DeleteUser";
+import { NotificationManager } from "react-notifications";
 
 export default function UserProfile({ data }) {
   const refresh = () => window.location.reload(true);
+
   return (
     <div className="login-form p-md-0 p-sm-3">
       <h4 style={{ fontWeight: 600 }} className="mb-3">
@@ -28,7 +30,14 @@ export default function UserProfile({ data }) {
         to="/login"
         onClick={() => {
           localStorage.clear();
-          refresh();
+          NotificationManager.success(
+            "Successfully Log out",
+            "Success",
+            3000,
+            setTimeout(() => {
+              refresh();
+            }, 2000)
+          );
         }}
       >
         <button className="login-form-button mt-4 ">Logout</button>
