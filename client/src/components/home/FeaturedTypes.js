@@ -29,7 +29,7 @@ export default function FeaturedTypes() {
                 >
                   {p.type}
                 </h3>
-                <Link>Shop Now</Link>
+                <Link to="/shop">Shop Now</Link>
               </div>
             </Col>
           ))}

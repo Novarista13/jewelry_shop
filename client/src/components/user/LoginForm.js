@@ -26,6 +26,7 @@ export default function LoginForm({
           <div className="my-3">
             <Form.Control
               size="md"
+              autoComplete="off"
               type="text"
               name="username"
               placeholder="Username"
@@ -36,6 +37,7 @@ export default function LoginForm({
         <div className="my-3">
           <Form.Control
             size="md"
+            autoComplete="off"
             type="email"
             name="email"
             defaultValue=""

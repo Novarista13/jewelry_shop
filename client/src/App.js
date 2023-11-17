@@ -15,29 +15,32 @@ import { UserIdContext } from "./contexts/UserContext";
 import Animation from "./reusable/Animation";
 import "react-notifications/lib/notifications.css";
 import { NotificationContainer } from "react-notifications";
+import ProductContextProvider from "./contexts/ProductContext";
 
 function App() {
   const { userId } = useContext(UserIdContext);
   return (
     <div className="App">
-      <NavBar />
-      <NotificationContainer />
-      <Current />
-      <Animation />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route
-          path="/user"
-          element={userId ? <User /> : <Navigate to="/login" />}
-        />
-      </Routes>
-      <Footer />
+      <ProductContextProvider>
+        <NavBar />
+        <NotificationContainer />
+        <Current />
+        <Animation />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/user"
+            element={userId ? <User /> : <Navigate to="/login" />}
+          />
+        </Routes>
+        <Footer />
+      </ProductContextProvider>
     </div>
   );
 }

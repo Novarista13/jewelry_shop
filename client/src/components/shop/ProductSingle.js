@@ -31,7 +31,15 @@ export default function ProductSingle({ data }) {
           <div
             className={!p.is_instock ? "sold-img product-image" : null}
             style={{
-              backgroundImage: !p.is_instock ? `url(${product})` : null,
+              backgroundImage: !p.is_instock
+                ? `url(${
+                    p.image.includes("https://")
+                      ? p.image
+                      : p.image
+                      ? "http://localhost:3001/images/" + p.image
+                      : product
+                  })`
+                : null,
             }}
           >
             {p.is_instock ? (
@@ -73,12 +81,8 @@ export default function ProductSingle({ data }) {
                 ? "gainsboro"
                 : p.color.toLowerCase() === "rose"
                 ? "#c12e35"
-                : p.color.toLowerCase() === "gold with white"
-                ? "#e8b65a"
                 : p.color.toLowerCase() === "diamond"
                 ? "#99A0B3"
-                : p.color.toLowerCase() === "blue sapphire with white"
-                ? "#7BB1E1"
                 : p.color,
             }}
           />

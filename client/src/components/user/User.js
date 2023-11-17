@@ -3,14 +3,17 @@ import Col from "react-bootstrap/Col";
 import carousel1 from "../../images/user/carousel1.jpg";
 import Card from "react-bootstrap/Card";
 import UserProfile from "./UserProfile";
-import { useContext, useState } from "react";
-import { useUserFetch } from "../../api/loginApi";
+import { useContext, useEffect, useState } from "react";
+import { userFetch } from "../../api/loginApi";
 import { UserIdContext } from "../../contexts/UserContext";
 
 export default function User() {
   const [userData, setUserData] = useState({});
-  const { userId } = useContext(UserIdContext);
-  useUserFetch(userId, setUserData);
+  const { userId, reload } = useContext(UserIdContext);
+
+  useEffect(() => {
+    userFetch(userId, setUserData);
+  }, [reload]);
 
   return (
     <div className="user-section px-3">

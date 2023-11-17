@@ -1,21 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Modal from "react-bootstrap/Modal";
-import { useApiFetch, apiEdit } from "../../api/productApi";
+import { apiFetch, apiEdit } from "../../api/productApi";
 import ProductForm from "./ProductForm";
 import { NotificationManager } from "react-notifications";
+import { ProductContext } from "../../contexts/ProductContext";
 
 export default function EditProductModal({ initialData, setModalShow }) {
   const [show, setShow] = useState(false);
   const [data, setData] = useState(initialData);
   const [category, setCategory] = useState([]);
 
+  const { reload, setReload } = useContext(ProductContext);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const refresh = () => window.location.reload(true);
-
   const url = "http://localhost:3001/api/categories";
-  useApiFetch(url, setCategory);
+  useEffect(() => apiFetch(url, setCategory));
+
   let singleCategory = category.filter(
     (c) => c._id === initialData.category_id
   );
@@ -24,27 +26,23 @@ export default function EditProductModal({ initialData, setModalShow }) {
     return JSON.stringify(obj1) !== JSON.stringify(obj2);
   }
 
-  const api = "http://localhost:3001/api/jewelleries";
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (compareObjs(data, initialData)) {
+      const api = "http://localhost:3001/api/jewelleries";
+
       apiEdit(api, data).then((value) => {
         if (value) {
+          setReload(reload + 1);
           NotificationManager.success(
             "Item Edited Successfully",
             "Success",
-            3000,
-            setTimeout(() => {
-              refresh();
-            }, 1000)
+            3000
           );
+          setShow(false);
+          setModalShow(false);
         }
       });
-
-      setShow(false);
-      setModalShow(false);
     } else {
       NotificationManager.error(
         "You can't edit without changing any value!",

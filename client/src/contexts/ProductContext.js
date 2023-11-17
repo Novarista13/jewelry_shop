@@ -1,26 +1,30 @@
-import { useState, createContext } from "react";
-import { useApiFetch } from "../api/productApi";
+import { useState, createContext, useEffect } from "react";
+import { apiFetch } from "../api/productApi";
 
 export const ProductContext = createContext();
-let checks = localStorage.getItem("checkValue");
+let checks = sessionStorage.getItem("checkValue");
 const checked = JSON.parse(checks);
 
-let prices = localStorage.getItem("price");
+let prices = sessionStorage.getItem("price");
 const priceValue = JSON.parse(prices);
 
 export default function RecipesContextProvider({ children }) {
   const [products, setProducts] = useState([]);
+  const [reload, setReload] = useState(0);
   const [price, setPrice] = useState(
-    priceValue ? priceValue : { startPrice: 200, endPrice: 1200 }
+    priceValue ? priceValue : { startPrice: 50, endPrice: 2000 }
   );
   const [checkValue, setCheckValue] = useState(checked ? checked : []);
 
   const url = "http://localhost:3001/api/jewelleries";
-  useApiFetch(url, setProducts);
+
+  useEffect(() => {
+    apiFetch(url, setProducts);
+  }, [reload]);
 
   let checkResultProduct = products;
 
-  if (price.startPrice > 200) {
+  if (price.startPrice >= 50) {
     let data = checkResultProduct;
     let priceCheck = data.filter((item) => {
       return item.price >= price.startPrice && item.price <= price.endPrice;
@@ -126,6 +130,8 @@ export default function RecipesContextProvider({ children }) {
         checkResultProduct,
         products,
         setProducts,
+        reload,
+        setReload,
       }}
     >
       {children}

@@ -1,36 +1,38 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { apiCreate, useApiFetch } from "../../api/productApi";
+import { apiCreate, apiFetch } from "../../api/productApi";
 import ProductForm from "./ProductForm";
 import { NotificationManager } from "react-notifications";
+import { ProductContext } from "../../contexts/ProductContext";
 
 export default function AddProductModal({ children }) {
   const [show, setShow] = useState(false);
   const [data, setData] = useState({});
   const [category, setCategory] = useState([]);
 
+  const { reload, setReload } = useContext(ProductContext);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const refresh = () => window.location.reload(true);
-
   const url = "http://localhost:3001/api/categories";
-  useApiFetch(url, setCategory);
+  useEffect(() => apiFetch(url, setCategory));
 
   const api = "http://localhost:3001/api/jewelleries";
   const handleSubmit = (e) => {
     e.preventDefault();
     setShow(false);
+
     apiCreate(api, data).then((value) => {
       if (value) {
+        setReload(reload + 1);
         NotificationManager.success(
           "Item Created Successfully",
           "Success",
-          3000,
-          setTimeout(() => {
-            refresh();
-          }, 2000)
+          3000
         );
+      } else {
+        NotificationManager.error("Try Again", "Item Create Failed", 3000);
       }
     });
   };

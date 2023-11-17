@@ -2,11 +2,18 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import available from "../../images/home/available.png";
-import code from "../../images/home/code.svg";
-import { tempData } from "../../data/tempData";
 import Animation from "../../reusable/Animation";
+import AvailableSmallProduct from "./AviailableSmallProduct";
+import { useContext } from "react";
+import { ProductContext } from "../../contexts/ProductContext";
 
 export default function AvailableProduct() {
+  const { products } = useContext(ProductContext);
+  const featuredProducts = products.filter((p) => p.featured);
+
+  const bestSeller = featuredProducts.slice(0, 4);
+  const onSale = featuredProducts.slice(4, 8);
+
   return (
     <div className="home-available-product-section">
       <Container style={{ maxWidth: 720 }}>
@@ -22,80 +29,14 @@ export default function AvailableProduct() {
             ></Col>
             <Col className="p-0" md={6} xs={12} style={{ textAlign: "Center" }}>
               <Row className="available-right-row m-0">
-                <Col sm={6} xs={12} className="available-right-col">
-                  <Row className="p-0">
-                    <p>
-                      Best seller product{" "}
-                      <img
-                        width={20}
-                        className=" d-inline"
-                        src={code}
-                        alt="footer-logo"
-                      />
-                    </p>
-                    {tempData.map((p, id) => (
-                      <Col sm="auto" xs={6} className="me-auto" key={id}>
-                        <Row>
-                          <Col xs={4}>
-                            <img
-                              width={50}
-                              className="d-inline"
-                              src={p.image}
-                              alt="footer-logo"
-                            />
-                          </Col>
-                          <Col xs={8}>
-                            <p>
-                              {p.name}{" "}
-                              <span
-                                style={{ display: "block", color: "#f3839b" }}
-                              >
-                                ${p.price}
-                              </span>
-                            </p>
-                          </Col>
-                        </Row>
-                      </Col>
-                    ))}
-                  </Row>
-                </Col>
-                <Col sm={6} xs={12} className="available-right-col">
-                  <Row className="p-0">
-                    <p>
-                      On Sale product{" "}
-                      <img
-                        width={20}
-                        className="d-inline"
-                        src={code}
-                        alt="footer-logo"
-                      />
-                    </p>
-                    {tempData.map((p, id) => (
-                      <Col sm="auto" xs={6} className="me-auto" key={id}>
-                        <Row>
-                          <Col xs={4}>
-                            <img
-                              width={50}
-                              className="d-inline"
-                              src={p.image}
-                              alt="footer-logo"
-                            />
-                          </Col>
-                          <Col xs={8}>
-                            <p>
-                              {p.name}{" "}
-                              <span
-                                style={{ display: "block", color: "#f3839b" }}
-                              >
-                                ${p.price}
-                              </span>
-                            </p>
-                          </Col>
-                        </Row>
-                      </Col>
-                    ))}
-                  </Row>
-                </Col>
+                <AvailableSmallProduct
+                  title={"Best seller product"}
+                  data={bestSeller}
+                />
+                <AvailableSmallProduct
+                  title={"On Sale product"}
+                  data={onSale}
+                />
               </Row>
             </Col>
           </Row>

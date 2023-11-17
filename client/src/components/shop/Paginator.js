@@ -8,7 +8,7 @@ export default function Paginator() {
   const { checkResultProduct } = useContext(ProductContext);
   const [state, setState] = useState({
     data: [],
-    limit: 20,
+    limit: 40,
     offset: 0,
     page: 3,
     activePage: 1,

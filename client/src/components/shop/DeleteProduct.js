@@ -1,28 +1,22 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Modal from "react-bootstrap/Modal";
 import { apiDelete } from "../../api/productApi";
 import { NotificationManager } from "react-notifications";
+import { ProductContext } from "../../contexts/ProductContext";
 
 export default function DeleteProduct({ id, setModalShow }) {
   const [show, setShow] = useState(false);
+  const { reload, setReload } = useContext(ProductContext);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const refresh = () => window.location.reload(true);
 
   const url = "http://localhost:3001/api/jewelleries";
   const handleClick = (e) => {
     e.preventDefault();
     apiDelete(url, id).then((value) => {
-      NotificationManager.success(
-        value.message,
-        "Success",
-        3000,
-        setTimeout(() => {
-          refresh();
-        }, 2000)
-      );
+      setReload(reload + 1);
+      NotificationManager.success(value.message, "Success", 3000);
     });
     setShow(false);
     setModalShow(false);

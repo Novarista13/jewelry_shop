@@ -16,7 +16,7 @@ export default function FilterRow({ title, data }) {
           <button
             onClick={() => {
               setCheckValue(checkValue.filter((i) => i.type !== title));
-              localStorage.setItem("checkValue", JSON.stringify(checkValue));
+              sessionStorage.setItem("checkValue", JSON.stringify(checkValue));
             }}
             className="selected-value mb-3"
           >
@@ -41,7 +41,7 @@ export default function FilterRow({ title, data }) {
                       : setCheckValue(
                           checkValue.filter((i) => i.item !== item)
                         );
-                    localStorage.setItem(
+                    sessionStorage.setItem(
                       "checkValue",
                       JSON.stringify(checkValue)
                     );

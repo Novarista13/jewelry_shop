@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Modal from "react-bootstrap/Modal";
 import EditUserForm from "./EditUserForm";
 import { userEdit } from "../../api/loginApi";
 import { NotificationManager } from "react-notifications";
+import { UserIdContext } from "../../contexts/UserContext";
 
 export default function EditUser({ initialData }) {
   const [show, setShow] = useState(false);
   const [data, setData] = useState(initialData);
+  const { reload, setReload } = useContext(UserIdContext);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const refresh = () => window.location.reload(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,13 +22,11 @@ export default function EditUser({ initialData }) {
     ) {
       userEdit(data).then((value) => {
         if (value) {
+          setReload(reload + 1);
           NotificationManager.success(
             "User Edited Successfully",
             "Success",
-            3000,
-            setTimeout(() => {
-              refresh();
-            }, 2000)
+            3000
           );
         }
       });

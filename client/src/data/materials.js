@@ -1,28 +1,34 @@
 export const typeData = ["Necklace", "Ring", "Bracelet", "Earrings"];
-export const brandData = ["LeeHwa Jewellery", "SK Jewellery", "Swarovski"];
+export const brandData = [
+  "LeeHwa Jewellery",
+  "SK Jewellery",
+  "Swarovski",
+  "Van Gundy",
+  "Tiffany & Co",
+];
 export const colorData = [
   "Black",
+  "White",
   "Blue",
   "Pink",
-  "Yellow",
+  "Gold",
+  "Salmon",
   "Green",
-  "Grey",
   "Magneta",
   "Navy",
-  "Diamond",
   "Purple",
   "Red",
-  "White",
-  "Violet",
-  "Maroon",
-  "Gold",
 ];
 export const sizeData = ["15", "16", "17", "18", "19", "20"];
 export const metalData = [
   "White Gold",
   "Gold",
-  "Lab Grown Diamonds",
+  "Silver",
+  "Pearl",
+  "Diamond",
   "Blue Sapphire",
+  "Ruby",
+  "Morganite",
   "Ruthenium",
   "Rhodium",
 ];

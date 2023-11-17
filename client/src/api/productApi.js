@@ -1,14 +1,11 @@
-import { useEffect } from "react";
 
-export function useApiFetch(url, setData) {
-  useEffect(() => {
-    const fetchInfo = async () => {
-      const res = await fetch(url);
-      const data = await res.json();
-      setData(data);
-    };
-    fetchInfo();
-  }, [url, setData]);
+export function apiFetch(url, setData) {
+  const fetchInfo = async () => {
+    const res = await fetch(url);
+    const data = await res.json();
+    setData(data);
+  };
+  fetchInfo();
 }
 
 function imageCreate(data) {
