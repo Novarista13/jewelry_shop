@@ -14,7 +14,7 @@ export default function Login() {
   const { setUserId } = useContext(UserIdContext);
   let navigate = useNavigate();
 
-  const url = "http://localhost:3001/api/auth/login";
+  const url = "http://localhost:8000/api/staff-login";
   const handleSubmit = (e) => {
     e.preventDefault();
 
